@@ -48,7 +48,7 @@ int main(void){
 	USART_init();																										// Initializes USART 1
 	USART_putstr("Test USART\n");
 	//USART_clearscreen();
-	//USART_putstr("Press different characters.\n\n");
+	USART_putstr("Press different characters.\n\n");
 	//USART_putstr ("Why is the green LED not blinking continuously??\n\n");
 	
 	// Initialize BTHQ21605V on I2C1 (PB6 (SCL) & (PB7 (SDA)))
