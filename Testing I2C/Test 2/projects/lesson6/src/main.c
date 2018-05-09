@@ -123,11 +123,11 @@ int main(void){
 		BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
 		// Start I2C write transfer for 1 byte, do not end transfer (SoftEnd_Mode)
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Write);
+		I2C_TransferHandling(I2C1, 0x27, 9, I2C_SoftEnd_Mode, I2C_Generate_Start_Write);
 		BTHQ21605V_WaitForI2CFlag(I2C_ISR_TXIS);
 
 		// 1. Write control byte: select data register
-		I2C_SendData(I2C1, 0x27);
+		I2C_SendData(I2C1, 0x27 | 1);
 		Delay(SystemCoreClock/8);
 		// Repeated start I2C read transfer for 1 byte
 		I2C_TransferHandling(I2C1, 0x27, 8, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
@@ -180,7 +180,7 @@ int main(void){
 		
 		//c1 = USART_getc();
 		//while(USART_getc() != '\n');
-		if(c1 != c2){
+		if(c1 == c2){
 			// Yes
 			c2=c1;
 			USART_putstr("You pressed: ");
