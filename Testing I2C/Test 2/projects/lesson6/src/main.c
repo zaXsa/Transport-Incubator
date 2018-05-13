@@ -116,34 +116,45 @@ int main(void){
 		//	BTHQ21605V_WriteInstruction(0x18); // Left
 		//	
 		//	BTHQ21605V_GotoXY(7+i,0);
-		//	BTHQ21605V_WriteData(BTHQ21605V_EMPTY_CHAR);    
+		//BTHQ21605V_WriteData(BTHQ21605V_EMPTY_CHAR);    
 		//}
 		
 		// Wait while I2C peripheral is not ready
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
+		//BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
-		// Start I2C write transfer for 1 byte, do not end transfer (SoftEnd_Mode)
-		I2C_TransferHandling(I2C1, 0x27, 9, I2C_SoftEnd_Mode, I2C_Generate_Start_Write);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_TXIS);
-
-		// 1. Write control byte: select data register
-		I2C_SendData(I2C1, 0x27 | 1);
-		Delay(SystemCoreClock/8);
-		// Repeated start I2C read transfer for 1 byte
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+		//// Start I2C write transfer for 1 byte, do not end transfer (SoftEnd_Mode)
+		//I2C_TransferHandling(I2C1, 0x27, 7, I2C_SoftEnd_Mode, I2C_Generate_Start_Write);
+		//BTHQ21605V_WaitForI2CFlag(I2C_ISR_TXIS);
+      //
+		//// 1. Write control byte: select data register
+		//I2C_SendData(I2C1, 0x27);
+		//Delay(SystemCoreClock/8);
+		//// Repeated start I2C read transfer for 1 byte
+		//I2C_TransferHandling(I2C1, 0x27, 8, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
+		//
+		//// 1. Read data
+		//buf[0] = I2C_ReceiveData(I2C1);
+		//
+		//buf[1] = I2C_ReceiveData(I2C1);
+		//
+		//buf[2] = I2C_ReceiveData(I2C1);
+		//
+		//buf[3] = I2C_ReceiveData(I2C1);	
+		//
+		
+		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
 		
 		// 1. Read data
 		buf[0] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+		
+		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
 		buf[1] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+		
+		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
 		buf[2] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
-		buf[3] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);		
-		//Wait for- and clear stop condition
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
+		
+		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
+		buf[3] = I2C_ReceiveData(I2C1);	
 		I2C1->ICR = I2C_ICR_STOPCF;
 		
 		/* Humidity is located in first two bytes */
