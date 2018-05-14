@@ -1,0 +1,56 @@
+Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+
+==============================================================================
+
+Section Cross References
+
+    main1.o(.text) refers to stm32f0_discovery.o(.text) for STM_EVAL_LEDInit
+    main1.o(.text) refers to stm32f0xx_rcc.o(.text) for RCC_APB1PeriphClockCmd
+    main1.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    main1.o(.text) refers to stm32f0xx_tim.o(.text) for TIM_TimeBaseInit
+    main1.o(.text) refers to stm32f0xx_misc.o(.text) for NVIC_Init
+    main1.o(.text) refers to system_stm32f0xx.o(.data) for SystemCoreClock
+    stm32f0xx_it.o(.text) refers to stm32f0xx_tim.o(.text) for TIM_GetITStatus
+    stm32f0xx_it.o(.text) refers to stm32f0_discovery.o(.text) for STM_EVAL_LEDToggle
+    stm32f0xx_it.o(.text) refers to stm32f0xx_it.o(.data) for .data
+    pwms.o(.text) refers to stm32f0xx_rcc.o(.text) for RCC_APB1PeriphClockCmd
+    pwms.o(.text) refers to stm32f0xx_gpio.o(.text) for GPIO_Init
+    pwms.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    pwms.o(.text) refers to stm32f0xx_tim.o(.text) for TIM_TimeBaseInit
+    pwms.o(.text) refers to system_stm32f0xx.o(.data) for SystemCoreClock
+    stm32f0_discovery.o(.text) refers to stm32f0xx_rcc.o(.text) for RCC_AHBPeriphClockCmd
+    stm32f0_discovery.o(.text) refers to stm32f0xx_gpio.o(.text) for GPIO_Init
+    stm32f0_discovery.o(.text) refers to stm32f0xx_syscfg.o(.text) for SYSCFG_EXTILineConfig
+    stm32f0_discovery.o(.text) refers to stm32f0xx_exti.o(.text) for EXTI_Init
+    stm32f0_discovery.o(.text) refers to stm32f0xx_misc.o(.text) for NVIC_Init
+    stm32f0_discovery.o(.text) refers to stm32f0_discovery.o(.constdata) for .constdata
+    stm32f0_discovery.o(.text) refers to stm32f0_discovery.o(.data) for .data
+    stm32f0xx_gpio.o(.text) refers to stm32f0xx_rcc.o(.text) for RCC_AHBPeriphResetCmd
+    stm32f0xx_rcc.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    stm32f0xx_rcc.o(.text) refers to stm32f0xx_rcc.o(.data) for .data
+    stm32f0xx_tim.o(.text) refers to stm32f0xx_rcc.o(.text) for RCC_APB1PeriphResetCmd
+    startup_stm32f0xx.o(RESET) refers to startup_stm32f0xx.o(STACK) for __initial_sp
+    startup_stm32f0xx.o(RESET) refers to startup_stm32f0xx.o(.text) for Reset_Handler
+    startup_stm32f0xx.o(RESET) refers to stm32f0xx_it.o(.text) for NMI_Handler
+    startup_stm32f0xx.o(.text) refers to system_stm32f0xx.o(.text) for SystemInit
+    startup_stm32f0xx.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_stm32f0xx.o(.text) refers to uidiv.o(.text) for __aeabi_uidivmod
+    system_stm32f0xx.o(.text) refers to system_stm32f0xx.o(.data) for .data
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_stm32f0xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_stm32f0xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main1.o(.text) for main
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to pwms.o(.text) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main1.o(.text) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to pwms.o(.text) for main
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
