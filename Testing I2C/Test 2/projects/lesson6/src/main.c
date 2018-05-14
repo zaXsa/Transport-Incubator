@@ -30,35 +30,18 @@ extern volatile char rx_buffer;
 // ----------------------------------------------------------------------------
 // Function prototypes
 // ----------------------------------------------------------------------------
-static char *itoa_simple_helper(char *dest, int i) {
-  if (i <= -10) {
-    dest = itoa_simple_helper(dest, i/10);
-  }
-  *dest++ = '0' - i%10;
-  return dest;
-}
 
-char *itoa_simple(char *dest, int i) {
-  char *s = dest;
-  if (i < 0) {
-    *s++ = '-';
-  } else {
-    i = -i;
-  }
-  *itoa_simple_helper(s, i) = '\0';
-  return dest;
-}
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
 int main(void){
 	//uint32_t i;
-	char c1=0;
-	char c2=1; 
+	//char c1=0;
+	//char c2=1; 
 	
 	int reading_hum;
-	double humidity;
-	double temperature;
+	volatile double humidity;
+	volatile double temperature;
 	int reading_temp;
 	uint8_t buf[4] = {1,2,3,4};
 	char charbuf[10];
@@ -73,7 +56,7 @@ int main(void){
 	USART_init();																										// Initializes USART 1
 	USART_putstr("Test USART\n");
 	//USART_clearscreen();
-	USART_putstr("Press different characters.\n\n");
+	//USART_putstr("Press different characters.\n\n");
 	//USART_putstr ("Why is the green LED not blinking continuously??\n\n");
 	
 	// Initialize BTHQ21605V on I2C1 (PB6 (SCL) & (PB7 (SDA)))
@@ -123,40 +106,33 @@ int main(void){
 		//BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
 		//// Start I2C write transfer for 1 byte, do not end transfer (SoftEnd_Mode)
-		//I2C_TransferHandling(I2C1, 0x27, 7, I2C_SoftEnd_Mode, I2C_Generate_Start_Write);
-		//BTHQ21605V_WaitForI2CFlag(I2C_ISR_TXIS);
-      //
+		I2C_TransferHandling(I2C1, (0x27<<1), 0, I2C_AutoEnd_Mode, I2C_Generate_Start_Write);
+		BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
+    I2C_ClearFlag(I2C1, I2C_ICR_STOPCF);
+
+		Delay(SystemCoreClock/8/10);
+		//
 		//// 1. Write control byte: select data register
-		//I2C_SendData(I2C1, 0x27);
-		//Delay(SystemCoreClock/8);
-		//// Repeated start I2C read transfer for 1 byte
-		//I2C_TransferHandling(I2C1, 0x27, 8, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
+		I2C_TransferHandling(I2C1, (0x27<<1), 4, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
+		
+		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
 		//
 		//// 1. Read data
-		//buf[0] = I2C_ReceiveData(I2C1);
+	  buf[0] = I2C_ReceiveData(I2C1);
+		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+		
+	  buf[1] = I2C_ReceiveData(I2C1);
+		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+
+	  buf[2] = I2C_ReceiveData(I2C1);
+		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
 		//
-		//buf[1] = I2C_ReceiveData(I2C1);
-		//
-		//buf[2] = I2C_ReceiveData(I2C1);
-		//
-		//buf[3] = I2C_ReceiveData(I2C1);	
-		//
+		buf[3] = I2C_ReceiveData(I2C1);
 		
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
-		
-		// 1. Read data
-		buf[0] = I2C_ReceiveData(I2C1);
-		
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
-		buf[1] = I2C_ReceiveData(I2C1);
-		
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
-		buf[2] = I2C_ReceiveData(I2C1);
-		
-		I2C_TransferHandling(I2C1, 0x27, 8, I2C_SoftEnd_Mode, I2C_Generate_Start_Read);
-		buf[3] = I2C_ReceiveData(I2C1);	
-		I2C1->ICR = I2C_ICR_STOPCF;
-		
+		// Wait for- and clear stop condition
+    BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
+    I2C1->ICR = I2C_ICR_STOPCF;
+
 		/* Humidity is located in first two bytes */
 		USART_putstr("incomming data: \n");
 		itoa_simple(charbuf, buf[0]);		
@@ -191,12 +167,12 @@ int main(void){
 		
 		//c1 = USART_getc();
 		//while(USART_getc() != '\n');
-		if(c1 == c2){
-			// Yes
-			c2=c1;
-			USART_putstr("You pressed: ");
-			USART_putc(c1);
-			USART_putstr("\n");
-		}	
+		//if(c1 == c2){
+		//	// Yes
+		//	c2=c1;
+		//	USART_putstr("You pressed: ");
+		//	USART_putc(c1);
+		//	USART_putstr("\n");
+		//}	
 	}
 }

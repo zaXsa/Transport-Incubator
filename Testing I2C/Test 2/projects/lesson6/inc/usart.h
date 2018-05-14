@@ -28,5 +28,6 @@ char USART_getc(void);
 void USART_putstr(char *str);
 void USART_getstr(char *str);
 void USART_clearscreen(void);
-
+static char *itoa_simple_helper(char *dest, int i);
+char *itoa_simple(char *dest, int i);
 #endif // _USART_H_
