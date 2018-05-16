@@ -1,0 +1,20 @@
+--cpu Cortex-M0
+".\obj\main3.o"
+".\obj\helper.o"
+".\obj\stm32f0xx_it.o"
+".\obj\stm32f0_discovery.o"
+".\obj\stm32f0xx_adc.o"
+".\obj\stm32f0xx_dac.o"
+".\obj\stm32f0xx_exti.o"
+".\obj\stm32f0xx_gpio.o"
+".\obj\stm32f0xx_misc.o"
+".\obj\stm32f0xx_rcc.o"
+".\obj\stm32f0xx_syscfg.o"
+".\obj\stm32f0xx_tim.o"
+".\obj\stm32f0xx_usart.o"
+".\obj\system_stm32f0xx.o"
+".\obj\startup_stm32f0xx.o"
+--library_type=microlib --strict --scatter ".\obj\lesson5.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\obj\lesson5.map" -o .\obj\lesson5.axf
