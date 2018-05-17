@@ -25,8 +25,8 @@ void  ADC_Setup(void);
 // ----------------------------------------------------------------------------
 int main(void)
 {
-  uint16_t adc;
-	 uint16_t adc2;
+ volatile uint16_t adc;
+	volatile uint16_t adc2;
 	
 
 const float Vin = 3.3;   // [V]
@@ -75,18 +75,23 @@ float TempInfra = 0.0;
   // As the ADC operates at 14 MHz, one cycle takes 1/14M sec.
   // So the minimum cycles required are 17.1 u / (1/14M) = 239.4
   ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);//PC1 is de ADC pin
+	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);//PC1 is de ADC pin
   
   // Start the first conversion
-  ADC_StartOfConversion(ADC1);
-
+  
   while(1)
   {
+		
     // Delay ~0.2 sec.
     Delay(SystemCoreClock/8/5);
-		 Delay(SystemCoreClock/8);// 1 sec
-    
-    //(#) Get the voltage values, using ADC_GetConversionValue() function
+		ADC_StartOfConversion(ADC1);
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+			//(#) Get the voltage values, using ADC_GetConversionValue() function
     adc = ADC_GetConversionValue(ADC1);
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+		adc2 = ADC_GetConversionValue(ADC1);
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
+    
 
     // Calculate corresponding voltage level    
     // V25 = (4095 * 1.43V) / 3V = 1952
@@ -95,24 +100,38 @@ float TempInfra = 0.0;
 	//	test = adc;
 		
 		Vout=Vin*((float)adc/4095); // calc for ntc
-		 //Vout=Vin*(test/4095); // calc for ntc
-  //Vout = Vin * ((1) / 3.0); // voor het test 
+  //Vout = Vin * ((1) / 3.0); // voor de test 
   Rout = ((Rt * Vout) / (Vin - Vout));
     TempK = (beta / log(Rout / Rinf)); // calc for temperature 
     TempC = TempK - 273.15;
-		
-//TempInfra=
+		  
+		TempInfra = Vin*(((float)adc2/4095)-0.5)/0.18+TempC;
+
+		USART_Putstr("adc1 ");
+    USART_itoa(adc, str);
+    USART_Putstr(str);
+    USART_Putstr(" adc1\r\n");
 
     // Output the values
     USART_Putstr("Temperature: ");
     USART_itoa(TempC, str);
     USART_Putstr(str);
     USART_Putstr(" degrees Celcius\r\n");
-		
-		    USART_Putstr("ADC ");
-    USART_itoa(adc, str);
+				
+		USART_Putstr("\n");		
+				
+		USART_Putstr("adc2 ");
+    USART_itoa(adc2, str);
     USART_Putstr(str);
-    USART_Putstr(" ADC\r\n");
+    USART_Putstr(" adc2\r\n");
+		
+		USART_Putstr("tempinfra ");
+    USART_itoa(TempInfra, str);
+    USART_Putstr(str);
+    USART_Putstr(" Tempinfra\r\n");
+
+		USART_Putstr(" ----------------------------------- \n");
+
 		
 
 			 
@@ -145,13 +164,17 @@ void ADC_Setup(void)
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
   GPIO_Init(GPIOC, &GPIO_InitStructure);
 	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
 	
   
   //(#) Configure the ADC conversion resolution, data alignment, external
   //    trigger and edge, scan direction and Enable/Disable the continuous mode
   //    using the ADC_Init() function.
   ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
-  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
   ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;    
   ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
   ADC_InitStructure.ADC_ScanDirection = ADC_ScanDirection_Upward;

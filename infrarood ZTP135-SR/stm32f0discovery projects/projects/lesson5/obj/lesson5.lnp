@@ -1,7 +1,7 @@
 --cpu Cortex-M0
 ".\obj\main3.o"
-".\obj\helper.o"
 ".\obj\stm32f0xx_it.o"
+".\obj\helper.o"
 ".\obj\stm32f0_discovery.o"
 ".\obj\stm32f0xx_adc.o"
 ".\obj\stm32f0xx_dac.o"
