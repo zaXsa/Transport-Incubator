@@ -21,7 +21,7 @@ uint32_t BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
-void BTHQ21605V_WaitForI2CFlag(uint32_t flag);
+//void BTHQ21605V_WaitForI2CFlag(uint32_t flag);
 
 /**
   * @brief  This function sets up the I2C1 hardware as mentioned in the

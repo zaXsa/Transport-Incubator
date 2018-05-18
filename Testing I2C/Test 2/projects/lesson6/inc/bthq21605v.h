@@ -127,5 +127,7 @@ uint8_t BTHQ21605V_ReadStatus(uint8_t bf_ac);
 void BTHQ21605V_Putc(uint8_t c);
 void BTHQ21605V_Puts(uint8_t *str);
 uint8_t BTHQ21605V_Getc(void);
+void BTHQ21605V_WaitForI2CFlag(uint32_t flag);
+
 
 #endif /* _BTHQ21605V_H_ */

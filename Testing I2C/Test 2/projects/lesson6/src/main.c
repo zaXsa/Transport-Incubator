@@ -15,6 +15,7 @@
 #include "bthq21605v.h"
 #include "helper.h"
 #include "usart.h"
+#include "HIH8120.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,10 +40,8 @@ int main(void){
 	//char c1=0;
 	//char c2=1; 
 	
-	int reading_hum;
-	volatile double humidity;
-	volatile double temperature;
-	int reading_temp;
+	double humidity;
+	double temperature;
 	uint8_t buf[4] = {1,2,3,4};
 	char charbuf[10];
 	// Configure LED3 and LED4 on STM32F0-Discovery
@@ -106,34 +105,10 @@ int main(void){
 		//BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
 		//// Start I2C write transfer for 1 byte, do not end transfer (SoftEnd_Mode)
-		I2C_TransferHandling(I2C1, (0x27<<1), 0, I2C_AutoEnd_Mode, I2C_Generate_Start_Write);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
-    I2C_ClearFlag(I2C1, I2C_ICR_STOPCF);
-
-		Delay(SystemCoreClock/8/10);
-		//
-		//// 1. Write control byte: select data register
-		I2C_TransferHandling(I2C1, (0x27<<1), 4, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
 		
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
-		//
-		//// 1. Read data
-	  buf[0] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
-		
-	  buf[1] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
+		ReadHIH8120(buf,4);
 
-	  buf[2] = I2C_ReceiveData(I2C1);
-		BTHQ21605V_WaitForI2CFlag(I2C_ISR_RXNE);
-		//
-		buf[3] = I2C_ReceiveData(I2C1);
-		
-		// Wait for- and clear stop condition
-    BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
-    I2C1->ICR = I2C_ICR_STOPCF;
-
-		/* Humidity is located in first two bytes */
+		/* Display the the incommeing data */
 		USART_putstr("incomming data: \n");
 		itoa_simple(charbuf, buf[0]);		
 		USART_putstr(charbuf);
@@ -148,31 +123,18 @@ int main(void){
 		USART_putstr(charbuf);
 		USART_putstr("\n");
 		
-		
-		reading_hum = (buf[0]<<8) + buf[1];
-		humidity = reading_hum / 16382.0 * 100.0;
+		/* Humidity is located in first two bytes */
+		humidity = ReadHumidity(buf,4);
 		USART_putstr("Humidity: ");
 		itoa_simple(charbuf, humidity);
 		USART_putstr(charbuf);
 		USART_putstr("\n");
 		
 		/* Temperature is located in next two bytes, padded by two trailing bits */
-		reading_temp = (buf[2]<<6) + (buf[3]>>2);
-		temperature = reading_temp / 16382.0 * 165.0 - 40;
+		temperature = ReadTemperature(buf,4);
 		itoa_simple(charbuf, temperature);
 		USART_putstr("Temperature: ");
 		USART_putstr(charbuf);
-		USART_putstr("\n");
-		
-		
-		//c1 = USART_getc();
-		//while(USART_getc() != '\n');
-		//if(c1 == c2){
-		//	// Yes
-		//	c2=c1;
-		//	USART_putstr("You pressed: ");
-		//	USART_putc(c1);
-		//	USART_putstr("\n");
-		//}	
+		USART_putstr("\n");		
 	}
 }

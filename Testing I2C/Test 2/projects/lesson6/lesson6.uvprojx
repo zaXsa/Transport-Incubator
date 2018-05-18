@@ -405,6 +405,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\usart.c</FilePath>
             </File>
+            <File>
+              <FileName>HIH8120.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HIH8120.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -4,6 +4,7 @@
 ".\obj\helper.o"
 ".\obj\stm32f0xx_it.o"
 ".\obj\usart.o"
+".\obj\hih8120.o"
 ".\obj\stm32f0_discovery.o"
 ".\obj\stm32f0xx_exti.o"
 ".\obj\stm32f0xx_gpio.o"
