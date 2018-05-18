@@ -36,10 +36,6 @@ extern volatile char rx_buffer;
 // Main
 // ----------------------------------------------------------------------------
 int main(void){
-	//uint32_t i;
-	//char c1=0;
-	//char c2=1; 
-	
 	double humidity;
 	double temperature;
 	uint8_t buf[4] = {1,2,3,4};
@@ -54,82 +50,73 @@ int main(void){
 	// Setup USART1 (PA9(TX) & PA10(RX))
 	USART_init();																										// Initializes USART 1
 	USART_putstr("Test USART\n");
-	//USART_clearscreen();
-	//USART_putstr("Press different characters.\n\n");
-	//USART_putstr ("Why is the green LED not blinking continuously??\n\n");
 	
-	// Initialize BTHQ21605V on I2C1 (PB6 (SCL) & (PB7 (SDA)))
+	// Initialize I2C1 (PB6 (SCL) & (PB7 (SDA)))
 	BTHQ21605V_Setup();																								// Initializes I2C 1
-	//BTHQ21605V_PowerOn();
-	//BTHQ21605V_Clear();
 	
-	//BTHQ21605V_Puts((uint8_t *)("Hello"));
-	//BTHQ21605V_GotoXY(2,1);
-	//BTHQ21605V_Puts((uint8_t *)("World!")); 
+	// Initialize BTHQ21605V
+	BTHQ21605V_PowerOn();
+	BTHQ21605V_Clear();
+	
+	BTHQ21605V_Puts((uint8_t *)("Test line 1"));
+	BTHQ21605V_GotoXY(2,1);
+	BTHQ21605V_Puts((uint8_t *)("Test line 2")); 
 	
 	Delay((SystemCoreClock/8)*2);
 	
 	while(1){
-		Delay(SystemCoreClock/8);
-		
 		// In case of error, blink LED3 very fast
-		//if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
-		//	while(1){
-		//		STM_EVAL_LEDToggle(LED3);
-		//		Delay(SystemCoreClock/8/20);
-		//	}
-		//}
-		//
-		//// Shift display right
-		//for(i=0; i<8; i++){
-		//	// Delay ~0.2 sec.
-		//	Delay(SystemCoreClock/8/5);
-		//	STM_EVAL_LEDToggle(LED4);
-		//	BTHQ21605V_WriteInstruction(0x1C); // Right
-		//	
-		//	BTHQ21605V_GotoXY(14-i,0);
-		//	BTHQ21605V_WriteData(0x7F);
-		//}
-		//// Shift display left
-		//for(i=0; i<8; i++){
-		//	// Delay ~0.1 sec.
-		//	Delay(SystemCoreClock/8/10);
-		//	STM_EVAL_LEDToggle(LED4);
-		//	BTHQ21605V_WriteInstruction(0x18); // Left
-		//	
-		//	BTHQ21605V_GotoXY(7+i,0);
-		//BTHQ21605V_WriteData(BTHQ21605V_EMPTY_CHAR);    
-		//}
+		if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
+			while(1){
+				STM_EVAL_LEDToggle(LED3);
+				Delay(SystemCoreClock/8/20);
+			}
+		}
+	
+		Delay(SystemCoreClock/8);
+		BTHQ21605V_Clear();
 		
-		ReadHIH8120(buf,4);
-
-		/* Display the the incommeing data */
+		MesureHIH8120(buf,4);																						// Function to make a new measurement from the HIH8120
+	
+		/* Display the the incommeing data in usart*/
 		USART_putstr("incomming data: \n");
 		itoa_simple(charbuf, buf[0]);		
 		USART_putstr(charbuf);
 		USART_putstr("\n");
-		itoa_simple(charbuf, buf[1]);
-		USART_putstr(charbuf);
-		USART_putstr("\n");
-		itoa_simple(charbuf, buf[2]);
-		USART_putstr(charbuf);
-		USART_putstr("\n");
-		itoa_simple(charbuf, buf[3]);
-		USART_putstr(charbuf);
+		itoa_simple(charbuf, buf[1]);                                                
+		USART_putstr(charbuf);                                                       
+		USART_putstr("\n");                                                          
+		itoa_simple(charbuf, buf[2]);                                                
+		USART_putstr(charbuf);                                                       
+		USART_putstr("\n");                                                          
+		itoa_simple(charbuf, buf[3]);                                                
+		USART_putstr(charbuf);                                                       
 		USART_putstr("\n");
 		
-		/* Humidity is located in first two bytes */
-		humidity = ReadHumidity(buf,4);
+		/* Get the humidity and display it */
+		humidity = ReadHumidity(buf,4);																			// Function to get the latest measured humidity
 		USART_putstr("Humidity: ");
 		itoa_simple(charbuf, humidity);
 		USART_putstr(charbuf);
 		USART_putstr("\n");
 		
-		/* Temperature is located in next two bytes, padded by two trailing bits */
-		temperature = ReadTemperature(buf,4);
+		/* Display the humidity on the first line of the  LCD screen */
+		BTHQ21605V_GotoXY(1,1);
+		BTHQ21605V_Puts((uint8_t *)("Hum:"));
+		BTHQ21605V_GotoXY(1,7);
+		BTHQ21605V_Puts((uint8_t *)(charbuf));
+		
+		/* Get the temperature and display it */
+		temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature
 		itoa_simple(charbuf, temperature);
 		USART_putstr("Temperature: ");
 		USART_putstr(charbuf);
 		USART_putstr("\n");		
+		
+		/* Display the temperture on the second line of the LCD screen */
+		BTHQ21605V_GotoXY(2,1);
+		BTHQ21605V_Puts((uint8_t *)("Temp:"));
+		BTHQ21605V_GotoXY(1,7);
+		BTHQ21605V_Puts((uint8_t *)(charbuf));
 	}
 }

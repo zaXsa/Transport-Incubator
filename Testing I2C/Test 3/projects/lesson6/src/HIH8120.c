@@ -28,7 +28,7 @@
   * @param  The array where the data is saved in and the size of the array.
   * @retval The HIH8120 data in the array
   */
-void ReadHIH8120(uint8_t buf[], int size){
+void MesureHIH8120(uint8_t buf[], int size){
 	// Wait while I2C peripheral is not ready
 	BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
