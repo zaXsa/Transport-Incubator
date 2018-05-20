@@ -45,7 +45,7 @@ int main(void){
 	STM_EVAL_LEDInit(LED4);
 	
 	// Initialize User Button on STM32F0-Discovery
-	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_GPIO);
+	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	
 	// Setup USART1 (PA9(TX) & PA10(RX))
 	USART_init();																										// Initializes USART 1

@@ -106,11 +106,14 @@ void SysTick_Handler(void)
 
 void USART1_IRQHandler(void){ 
    // Read Data Register not empty interrupt?
-   if(USART1->ISR & USART_ISR_RXNE)
-   {
+   if(USART1->ISR & USART_ISR_RXNE){
      // Read the data, clears the interrupt flag
      rx_buffer = USART1->RDR;
    }
+}
+
+void EXTI0_1_IRQHandler(void){
+	STM_EVAL_LEDToggle(LED4);
 }
 
 /**

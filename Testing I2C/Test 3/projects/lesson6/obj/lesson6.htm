@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\lesson6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\lesson6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri May 18 17:42:31 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun May 20 13:02:49 2018
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -24,7 +24,7 @@ Function Pointers
  <LI><a href="#[f]">DMA1_Channel1_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
  <LI><a href="#[10]">DMA1_Channel2_3_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
  <LI><a href="#[11]">DMA1_Channel4_5_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
- <LI><a href="#[b]">EXTI0_1_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
+ <LI><a href="#[b]">EXTI0_1_IRQHandler</a> from stm32f0xx_it.o(.text) referenced from startup_stm32f0xx.o(RESET)
  <LI><a href="#[c]">EXTI2_3_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
  <LI><a href="#[d]">EXTI4_15_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
  <LI><a href="#[9]">FLASH_IRQHandler</a> from startup_stm32f0xx.o(.text) referenced from startup_stm32f0xx.o(RESET)
@@ -276,6 +276,9 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
 <P><STRONG><a name="[20]"></a>USART1_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f0xx_it.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
+</UL>
+<P><STRONG><a name="[b]"></a>EXTI0_1_IRQHandler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f0xx_it.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
 <P><STRONG><a name="[2a]"></a>USART_init</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, usart.o(.text))
@@ -719,9 +722,6 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
 <P><STRONG><a name="[11]"></a>DMA1_Channel4_5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f0xx.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
-</UL>
-<P><STRONG><a name="[b]"></a>EXTI0_1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f0xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
 <P><STRONG><a name="[c]"></a>EXTI2_3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f0xx.o(.text))
