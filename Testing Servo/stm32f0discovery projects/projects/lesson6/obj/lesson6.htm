@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\lesson6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\lesson6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed May 23 20:38:40 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed May 23 21:14:06 2018
 <BR><P>
 <H3>Maximum Stack Usage =         68 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -84,10 +84,11 @@ Global Symbols
 
 <P><STRONG><a name="[5d]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 234 bytes, Stack size 48 bytes, main.o(.text))
+<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 324 bytes, Stack size 48 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = main &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetCompare1
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC1PreloadConfig
 <LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC1Init
@@ -99,11 +100,11 @@ Global Symbols
 <LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[34]"></a>Delay</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, helper.o(.text))
+<P><STRONG><a name="[35]"></a>Delay</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, helper.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -134,19 +135,19 @@ Global Symbols
 <P><STRONG><a name="[b]"></a>EXTI0_1_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI0_1_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDToggle
+<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDToggle
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
-<P><STRONG><a name="[15]"></a>TIM2_IRQHandler</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text))
+<P><STRONG><a name="[15]"></a>TIM2_IRQHandler</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = TIM2_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
-<P><STRONG><a name="[37]"></a>STM_EVAL_LEDInit</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, stm32f0_discovery.o(.text), UNUSED)
+<P><STRONG><a name="[38]"></a>STM_EVAL_LEDInit</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, stm32f0_discovery.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
@@ -155,27 +156,27 @@ Global Symbols
 
 <P><STRONG><a name="[5f]"></a>STM_EVAL_LEDOff</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0_discovery.o(.text), UNUSED)
 
-<P><STRONG><a name="[35]"></a>STM_EVAL_LEDToggle</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f0_discovery.o(.text))
+<P><STRONG><a name="[36]"></a>STM_EVAL_LEDToggle</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f0_discovery.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[38]"></a>STM_EVAL_PBInit</STRONG> (Thumb, 140 bytes, Stack size 48 bytes, stm32f0_discovery.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSCFG_EXTILineConfig
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
+<P><STRONG><a name="[39]"></a>STM_EVAL_PBInit</STRONG> (Thumb, 140 bytes, Stack size 48 bytes, stm32f0_discovery.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSCFG_EXTILineConfig
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
 <LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 
-<P><STRONG><a name="[3c]"></a>STM_EVAL_PBGetState</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f0_discovery.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+<P><STRONG><a name="[3d]"></a>STM_EVAL_PBGetState</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f0_discovery.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 </UL>
 
 <P><STRONG><a name="[60]"></a>EXTI_DeInit</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f0xx_exti.o(.text), UNUSED)
 
-<P><STRONG><a name="[3b]"></a>EXTI_Init</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, stm32f0xx_exti.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<P><STRONG><a name="[3c]"></a>EXTI_Init</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, stm32f0xx_exti.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
 </UL>
 
 <P><STRONG><a name="[61]"></a>EXTI_StructInit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f0xx_exti.o(.text), UNUSED)
@@ -190,15 +191,15 @@ Global Symbols
 
 <P><STRONG><a name="[66]"></a>EXTI_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_exti.o(.text), UNUSED)
 
-<P><STRONG><a name="[3e]"></a>GPIO_DeInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, stm32f0xx_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphResetCmd
+<P><STRONG><a name="[3f]"></a>GPIO_DeInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, stm32f0xx_gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphResetCmd
 </UL>
 
 <P><STRONG><a name="[30]"></a>GPIO_Init</STRONG> (Thumb, 112 bytes, Stack size 20 bytes, stm32f0xx_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDInit
+<BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDInit
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -206,8 +207,8 @@ Global Symbols
 
 <P><STRONG><a name="[68]"></a>GPIO_PinLockConfig</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f0xx_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[3d]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f0xx_gpio.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBGetState
+<P><STRONG><a name="[3e]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f0xx_gpio.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBGetState
 </UL>
 
 <P><STRONG><a name="[69]"></a>GPIO_ReadInputData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f0xx_gpio.o(.text), UNUSED)
@@ -233,7 +234,7 @@ Global Symbols
 <P><STRONG><a name="[2f]"></a>NVIC_Init</STRONG> (Thumb, 70 bytes, Stack size 12 bytes, stm32f0xx_misc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -245,12 +246,12 @@ Global Symbols
 
 <P><STRONG><a name="[73]"></a>RCC_HSEConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[41]"></a>RCC_GetFlagStatus</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_WaitForHSEStartUp
+<P><STRONG><a name="[42]"></a>RCC_GetFlagStatus</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_WaitForHSEStartUp
 </UL>
 
-<P><STRONG><a name="[40]"></a>RCC_WaitForHSEStartUp</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, stm32f0xx_rcc.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
+<P><STRONG><a name="[41]"></a>RCC_WaitForHSEStartUp</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, stm32f0xx_rcc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
 </UL>
 
 <P><STRONG><a name="[74]"></a>RCC_AdjustHSICalibrationValue</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
@@ -295,8 +296,8 @@ Global Symbols
 
 <P><STRONG><a name="[88]"></a>RCC_USARTCLKConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[42]"></a>RCC_GetClocksFreq</STRONG> (Thumb, 208 bytes, Stack size 24 bytes, stm32f0xx_rcc.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<P><STRONG><a name="[43]"></a>RCC_GetClocksFreq</STRONG> (Thumb, 208 bytes, Stack size 24 bytes, stm32f0xx_rcc.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 
 <P><STRONG><a name="[89]"></a>RCC_RTCCLKConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
@@ -306,21 +307,21 @@ Global Symbols
 <P><STRONG><a name="[8b]"></a>RCC_BackupResetCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[28]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDInit
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_LEDInit
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[39]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<P><STRONG><a name="[3a]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
 </UL>
 
 <P><STRONG><a name="[29]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3f]"></a>RCC_AHBPeriphResetCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DeInit
+<P><STRONG><a name="[40]"></a>RCC_AHBPeriphResetCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_DeInit
 </UL>
 
 <P><STRONG><a name="[46]"></a>RCC_APB2PeriphResetCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_rcc.o(.text), UNUSED)
@@ -347,8 +348,8 @@ Global Symbols
 
 <P><STRONG><a name="[93]"></a>SYSCFG_I2CFastModePlusConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_syscfg.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a]"></a>SYSCFG_EXTILineConfig</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_syscfg.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
+<P><STRONG><a name="[3b]"></a>SYSCFG_EXTILineConfig</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_syscfg.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM_EVAL_PBInit
 </UL>
 
 <P><STRONG><a name="[94]"></a>SYSCFG_BreakConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f0xx_syscfg.o(.text), UNUSED)
@@ -540,7 +541,7 @@ Global Symbols
 
 <P><STRONG><a name="[d0]"></a>TIM_ClearFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_tim.o(.text), UNUSED)
 
-<P><STRONG><a name="[36]"></a>TIM_GetITStatus</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f0xx_tim.o(.text))
+<P><STRONG><a name="[37]"></a>TIM_GetITStatus</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f0xx_tim.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
@@ -690,14 +691,17 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(.text)
 </UL>
 <P><STRONG><a name="[56]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, system_stm32f0xx.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 
 <P><STRONG><a name="[db]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
-<P><STRONG><a name="[43]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
+<P><STRONG><a name="[34]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = __aeabi_uidivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[27]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))

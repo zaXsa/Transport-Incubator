@@ -124,44 +124,44 @@ void TIM2_IRQHandler(void){
 	//Rate of output variation defined by PulseAdd
 	//If PulseAdd is larger, output will vary faster.
 	
-	static int16_t PulseAdd = 480;
+	//static int16_t PulseAdd = 480;
 	
 	//WARNING: This value was only used to produce the waveform
 	//in my logic analyzer image.
 	//static int16_t PulseAdd = 10000;
 	
-	if(TIM_GetITStatus(TIM2, TIM_IT_Update) == SET){
+	if(TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	
-		#ifdef TRIANGLE_MODE
-		
-		PulseWidth+=PulseAdd;	
-		
-		//Made PulseWidth bounce between 0 and 48k
-		//at a rate defined by the initial value of
-		//PulseAdd.
-		if(PulseWidth > PULSEWITH){
-			PulseWidth = PULSEWITH;
-			PulseAdd = -PulseAdd;
-		} else if(PulseWidth < 0){
-			PulseWidth = 0;
-			PulseAdd = -PulseAdd;
-		} 
-			PulseWidth += PulseAdd;
-
-		
-		#else
-		//Limit PulseWidth to 48k
-		if(PulseWidth>PULSEWITH){
-			PulseWidth = PULSEWITH;
-		}
-		#endif
-		
-		//Set capture compare register to 1ms+PulseWidth time
-		//Each PulseWidth time is equal to 20.833ns
-		//meaning 20.8333ns*48000 = 1ms
-		//TIM_SetCompare1(TIM2, 96000);														//(TIM2, 48000+PulseWidth); 48000min 72000mid 96000max
-	}
+	//	#ifdef TRIANGLE_MODE
+	//	
+	//	PulseWidth+=PulseAdd;	
+	//	
+	//	//Made PulseWidth bounce between 0 and 48k
+	//	//at a rate defined by the initial value of
+	//	//PulseAdd.
+	//	if(PulseWidth > PULSEWITH){
+	//		PulseWidth = PULSEWITH;
+	//		PulseAdd = -PulseAdd;
+	//	} else if(PulseWidth < 0){
+	//		PulseWidth = 0;
+	//		PulseAdd = -PulseAdd;
+	//	} 
+	//		PulseWidth += PulseAdd;
+   //   
+	//	
+	//	#else
+	//	//Limit PulseWidth to 48k
+	//	if(PulseWidth>PULSEWITH){
+	//		PulseWidth = PULSEWITH;
+	//	}
+	//	#endif
+	//	
+	//	//Set capture compare register to 1ms+PulseWidth time
+	//	//Each PulseWidth time is equal to 20.833ns
+	//	//meaning 20.8333ns*48000 = 1ms
+	//	//TIM_SetCompare1(TIM2, 96000);														//(TIM2, 48000+PulseWidth); 48000min 72000mid 96000max
+	//}
 }
 
 /**

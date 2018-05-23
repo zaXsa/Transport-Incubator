@@ -78,7 +78,7 @@ NVIC_InitTypeDef N;
  //Where Freq = 50
  T.TIM_ClockDivision = TIM_CKD_DIV1;
  T.TIM_Prescaler = 0;
- T.TIM_Period = 960000 - 1;
+ T.TIM_Period = 960000 - 1;																		//960000
  T.TIM_CounterMode = TIM_CounterMode_Up;
  TIM_TimeBaseInit(TIM2, &T);
 
@@ -121,15 +121,21 @@ NVIC_InitTypeDef N;
  //Start the timer!
  TIM_Cmd(TIM2, ENABLE);
 	while(1){
-		TIM_SetCompare1(TIM2, 96000);														//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		// Delays for 1s
-		Delay(SystemCoreClock/8);
+		TIM_SetCompare1(TIM2, 95000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/67);															// Delays for 25ms
+		TIM_SetCompare1(TIM2, 0);	
+		Delay(SystemCoreClock/8/67);
 		TIM_SetCompare1(TIM2, 48000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8*3);
-		TIM_SetCompare1(TIM2, 12000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		// Delays for 1s
-		Delay(SystemCoreClock/8);
+		Delay(SystemCoreClock/8/67);
+		TIM_SetCompare1(TIM2, 0);	
+		Delay(SystemCoreClock/8/67);
+		TIM_SetCompare1(TIM2, 13000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/67);
+		TIM_SetCompare1(TIM2, 0);	
+		Delay(SystemCoreClock/8/67);
 		TIM_SetCompare1(TIM2, 48000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8*3);
+		Delay(SystemCoreClock/8/67);
+		TIM_SetCompare1(TIM2, 0);	
+		Delay(SystemCoreClock/8/67);
 	}
 }
