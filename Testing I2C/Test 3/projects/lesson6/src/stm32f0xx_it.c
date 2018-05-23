@@ -105,15 +105,22 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 void USART1_IRQHandler(void){ 
-   // Read Data Register not empty interrupt?
-   if(USART1->ISR & USART_ISR_RXNE){
-     // Read the data, clears the interrupt flag
-     rx_buffer = USART1->RDR;
-   }
-}
-
-void EXTI0_1_IRQHandler(void){
-	STM_EVAL_LEDToggle(LED4);
+   if(USART1->ISR & USART_ISR_RXNE){											   				// Read Data Register not empty interrupt?
+     rx_buffer = USART1->RDR;																				// Read the data, clears the interrupt flag	
+   }	
+}	
+	
+void EXTI0_1_IRQHandler(void){	
+	if((EXTI->IMR & EXTI_IMR_MR0) && (EXTI->PR & EXTI_PR_PR0)){	
+		STM_EVAL_LEDToggle(LED4);	
+		//while(GPIOA->IDR & GPIO_IDR_0){}															// Waits until the button is released 
+		EXTI->PR |= EXTI_PR_PR0 ;	
+	}	
+	if((EXTI->IMR & EXTI_IMR_MR0) && (EXTI->PR & EXTI_PR_PR1)){	
+		STM_EVAL_LEDToggle(LED3);	
+		//while(GPIOA->IDR & GPIO_IDR_1){}															// Waits until the button is released
+		EXTI->PR |= EXTI_PR_PR0 ;
+	}
 }
 
 /**

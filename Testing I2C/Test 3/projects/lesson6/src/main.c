@@ -47,6 +47,12 @@ int main(void){
 	// Initialize User Button on STM32F0-Discovery
 	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	
+	SYSCFG->EXTICR[0]  &= ~(0x000F);
+	EXTI->RTSR |= EXTI_RTSR_TR0;
+	EXTI->RTSR |= EXTI_IMR_MR0;
+	NVIC_SetPriority(EXTI0_1_IRQn,1);
+	NVIC_EnableIRQ(EXTI0_1_IRQn);
+	
 	// Setup USART1 (PA9(TX) & PA10(RX))
 	USART_init();																										// Initializes USART 1
 	USART_putstr("Test USART\n");
@@ -55,23 +61,23 @@ int main(void){
 	BTHQ21605V_Setup();																								// Initializes I2C 1
 	
 	// Initialize BTHQ21605V
-	BTHQ21605V_PowerOn();
-	BTHQ21605V_Clear();
-	
-	BTHQ21605V_Puts((uint8_t *)("Test line 1"));
-	BTHQ21605V_GotoXY(2,1);
-	BTHQ21605V_Puts((uint8_t *)("Test line 2")); 
+	//BTHQ21605V_PowerOn();
+	//BTHQ21605V_Clear();
+	//
+	//BTHQ21605V_Puts((uint8_t *)("Test line 1"));
+	//BTHQ21605V_GotoXY(2,1);
+	//BTHQ21605V_Puts((uint8_t *)("Test line 2")); 
 	
 	Delay((SystemCoreClock/8)*2);
 	
 	while(1){
 		// In case of error, blink LED3 very fast
-		if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
-			while(1){
-				STM_EVAL_LEDToggle(LED3);
-				Delay(SystemCoreClock/8/20);
-			}
-		}
+		//if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
+		//	while(1){
+		//		STM_EVAL_LEDToggle(LED3);
+		//		Delay(SystemCoreClock/8/20);
+		//	}
+		//}
 	
 		Delay(SystemCoreClock/8);
 		BTHQ21605V_Clear();
@@ -101,10 +107,10 @@ int main(void){
 		USART_putstr("\n");
 		
 		/* Display the humidity on the first line of the  LCD screen */
-		BTHQ21605V_GotoXY(1,1);
-		BTHQ21605V_Puts((uint8_t *)("Hum:"));
-		BTHQ21605V_GotoXY(1,7);
-		BTHQ21605V_Puts((uint8_t *)(charbuf));
+		//BTHQ21605V_GotoXY(1,1);
+		//BTHQ21605V_Puts((uint8_t *)("Hum:"));
+		//BTHQ21605V_GotoXY(1,7);
+		//BTHQ21605V_Puts((uint8_t *)(charbuf));
 		
 		/* Get the temperature and display it */
 		temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature
@@ -114,9 +120,9 @@ int main(void){
 		USART_putstr("\n");		
 		
 		/* Display the temperture on the second line of the LCD screen */
-		BTHQ21605V_GotoXY(2,1);
-		BTHQ21605V_Puts((uint8_t *)("Temp:"));
-		BTHQ21605V_GotoXY(1,7);
-		BTHQ21605V_Puts((uint8_t *)(charbuf));
+		//BTHQ21605V_GotoXY(2,1);
+		//BTHQ21605V_Puts((uint8_t *)("Temp:"));
+		//BTHQ21605V_GotoXY(1,7);
+		//BTHQ21605V_Puts((uint8_t *)(charbuf));
 	}
 }
