@@ -121,20 +121,12 @@ NVIC_InitTypeDef N;
  //Start the timer!
  TIM_Cmd(TIM2, ENABLE);
 	while(1){
-		TIM_SetCompare1(TIM2, 95000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/67);															// Delays for 15ms
-		TIM_SetCompare1(TIM2, 0);																// Turns of the PWM
-		Delay(SystemCoreClock/8/2);															// Delays for 500ms
-		TIM_SetCompare1(TIM2, 48000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/67);
-		TIM_SetCompare1(TIM2, 0);	
-		Delay(SystemCoreClock/8/2);
-		TIM_SetCompare1(TIM2, 13000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/67);
-		TIM_SetCompare1(TIM2, 0);	
-		Delay(SystemCoreClock/8/2);
-		TIM_SetCompare1(TIM2, 48000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/67);
+		TIM_SetCompare1(TIM2, 55000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/5);																// Delays for 200ms
+		TIM_SetCompare1(TIM2, 0);																	// Turns of the PWM
+		Delay(SystemCoreClock/8/2);																// Delays for 500ms
+		TIM_SetCompare1(TIM2, 84000);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/5);
 		TIM_SetCompare1(TIM2, 0);	
 		Delay(SystemCoreClock/8/2);
 	}
