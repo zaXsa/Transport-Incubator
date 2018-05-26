@@ -28,10 +28,26 @@
 // ----------------------------------------------------------------------------
 extern uint32_t BTHQ21605V_CommStatus;
 extern volatile char rx_buffer;
+
+uint32_t i;
 // ----------------------------------------------------------------------------
 // Function prototypes
 // ----------------------------------------------------------------------------
+void left(){
+	for (i=90;i>=60;i -= 200){															// 84000 38000
+		TIM_SetCompare4(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/200);														// Delays for 10ms
+	}
+	TIM_SetCompare4(TIM2, 0);	
+}
 
+void right(){
+	for (i=60;i<=90;i += 200){														// 84000 38000
+		TIM_SetCompare4(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/200);														// Delays for 10ms
+	}
+	TIM_SetCompare4(TIM2, 0);	
+}
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
@@ -47,7 +63,7 @@ int main(void){
 	
 	uint32_t PWMHumidifier=0;
 	uint32_t PWMHeater=0;
-	uint32_t PWMFan=0;
+	uint32_t PWMFan=60;
 	
 	//[..] To use the Timer in Output Compare mode, the following steps are mandatory:
 	
@@ -89,8 +105,8 @@ int main(void){
 	//    (++) Clock Division = TIM_CKD_DIV1.
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_Period = 1000 - 1;
 	TIM_TimeBaseStructure.TIM_Prescaler = (uint16_t)((SystemCoreClock / 5000) - 1);
+	TIM_TimeBaseStructure.TIM_Period = 1000 - 1;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
 	
 	//(#) Fill the TIM_OCInitStruct with the desired parameters including:
@@ -123,14 +139,15 @@ int main(void){
 	TIM_Cmd(TIM2, ENABLE);
 	while(1){
 		// Update compare value
-		PWMHumidifier = 0;
-		PWMHeater = 0;
-		PWMFan = 150;
+		//PWMHumidifier = 500;
+		//PWMHeater = 200;
+		//PWMFan = 300;
+		//
+		//TIM_SetCompare2(TIM2, PWMHumidifier);
+		//TIM_SetCompare3(TIM2, PWMHeater);
+		//TIM_SetCompare4(TIM2, PWMFan);
 		
-		TIM_SetCompare2(TIM2, PWMHumidifier);
-		TIM_SetCompare3(TIM2, PWMHeater);
-		TIM_SetCompare4(TIM2, PWMFan);
-		Delay(SystemCoreClock/8/67);
-		TIM_SetCompare4(TIM2, 0);
+		left();
+		right();
 	}
 }
