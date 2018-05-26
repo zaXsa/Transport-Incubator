@@ -34,7 +34,7 @@ uint32_t i;
 // Function prototypes
 // ----------------------------------------------------------------------------
 void left(){
-	for (i=90;i>=60;i -= 200){															// 84000 38000
+	for (i=94000;i>=30000;i -= 150){														// 84000 38000
 		TIM_SetCompare4(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
 		Delay(SystemCoreClock/8/200);														// Delays for 10ms
 	}
@@ -42,12 +42,13 @@ void left(){
 }
 
 void right(){
-	for (i=60;i<=90;i += 200){														// 84000 38000
+	for (i=30000;i<=96000;i += 150){														// 84000 38000
 		TIM_SetCompare4(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
 		Delay(SystemCoreClock/8/200);														// Delays for 10ms
 	}
 	TIM_SetCompare4(TIM2, 0);	
 }
+
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
@@ -63,7 +64,7 @@ int main(void){
 	
 	uint32_t PWMHumidifier=0;
 	uint32_t PWMHeater=0;
-	uint32_t PWMFan=60;
+	uint32_t PWMFan=0;
 	
 	//[..] To use the Timer in Output Compare mode, the following steps are mandatory:
 	
@@ -105,8 +106,8 @@ int main(void){
 	//    (++) Clock Division = TIM_CKD_DIV1.
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_Prescaler = (uint16_t)((SystemCoreClock / 5000) - 1);
-	TIM_TimeBaseStructure.TIM_Period = 1000 - 1;
+	TIM_TimeBaseStructure.TIM_Prescaler = 0;
+	TIM_TimeBaseStructure.TIM_Period = 960000 - 1;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
 	
 	//(#) Fill the TIM_OCInitStruct with the desired parameters including:

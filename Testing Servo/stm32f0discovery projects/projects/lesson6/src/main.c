@@ -33,7 +33,7 @@ volatile uint32_t i = 0;
 // Function prototypes
 // ----------------------------------------------------------------------------
 void left(){
-	for (i=94000;i>=46000;i -= 200){														// 84000 38000
+	for (i=94000;i>=35000;i -= 150){														// 84000 38000
 		TIM_SetCompare1(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
 		Delay(SystemCoreClock/8/200);														// Delays for 10ms
 	}
@@ -41,7 +41,7 @@ void left(){
 }
 
 void right(){
-	for (i=46000;i<=96000;i += 200){														// 84000 38000
+	for (i=35000;i<=96000;i += 150){														// 84000 38000
 		TIM_SetCompare1(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
 		Delay(SystemCoreClock/8/200);														// Delays for 10ms
 	}

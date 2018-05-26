@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\obj\lesson6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\lesson6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri May 25 11:50:43 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat May 26 15:04:39 2018
 <BR><P>
-<H3>Maximum Stack Usage =        140 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        132 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; right &rArr; __aeabi_uidivmod
 <P>
@@ -84,7 +84,7 @@ Global Symbols
 
 <P><STRONG><a name="[5f]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[28]"></a>left</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[28]"></a>left</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = left &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
@@ -104,11 +104,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 220 bytes, Stack size 104 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = main &rArr; right &rArr; __aeabi_uidivmod
+<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 204 bytes, Stack size 96 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = main &rArr; right &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC4Init
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3Init
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC2Init
@@ -721,7 +720,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
-<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;right
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;left
 </UL>
