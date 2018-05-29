@@ -28,25 +28,10 @@
 // ----------------------------------------------------------------------------
 extern uint32_t BTHQ21605V_CommStatus;
 extern volatile char rx_buffer;
-volatile uint32_t i = 0;
+extern uint32_t ServoPos;
 // ----------------------------------------------------------------------------
 // Function prototypes
 // ----------------------------------------------------------------------------
-void left(){
-	for (i=94000;i>=35000;i -= 150){														// 84000 38000
-		TIM_SetCompare1(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/200);														// Delays for 10ms
-	}
-	TIM_SetCompare1(TIM2, 0);	
-}
-
-void right(){
-	for (i=35000;i<=96000;i += 150){														// 84000 38000
-		TIM_SetCompare1(TIM2, i);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-		Delay(SystemCoreClock/8/200);														// Delays for 10ms
-	}
-	TIM_SetCompare1(TIM2, 0);	
-}
 
 // ----------------------------------------------------------------------------
 // Main
@@ -137,11 +122,10 @@ int main(void){
 	//Start the timer!
 	TIM_Cmd(TIM2, ENABLE);
 	//USART_init();
-	//TIM_SetCompare1(TIM2, 50000);													//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
-	//Delay(SystemCoreClock/8);														// Delays for 10ms
-	//TIM_SetCompare1(TIM2, 0);	
+	TIM_SetCompare1(TIM2, 35000);												//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+	Delay(SystemCoreClock/8);														// Delays for 10ms
+	TIM_SetCompare1(TIM2, 0);	
 	while(1){
-		left();
-		right();
+		
 	}
 }

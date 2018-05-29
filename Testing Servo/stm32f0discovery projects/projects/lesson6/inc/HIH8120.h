@@ -25,5 +25,6 @@
 void MesureHIH8120(uint8_t buf[], int size);
 double ReadHumidity(const uint8_t buf[], const int size);
 double ReadTemperature(const uint8_t buf[], const int size);
-
+void left(void);
+void right(void);
 #endif // _HIH8120_H_

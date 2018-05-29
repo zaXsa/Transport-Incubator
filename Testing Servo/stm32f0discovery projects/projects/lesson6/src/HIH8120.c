@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
-
+uint32_t ServoPos;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -87,4 +87,20 @@ double ReadTemperature(const uint8_t buf[], const int size){
 	// Uses the last 2 bytes from the HIH8120 and calculates the Temperature
 	reading_temp = (buf[2]<<6) + (buf[3]>>2);
 	return reading_temp / 16382.0 * 165.0 - 40;
+}
+
+void left(){
+	for (ServoPos=94000;ServoPos>=35000;ServoPos -= 150){														// 84000 38000
+		TIM_SetCompare1(TIM2, ServoPos);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/200);														// Delays for 10ms
+	}
+	TIM_SetCompare1(TIM2, 0);	
+}
+
+void right(){
+	for (ServoPos=35000;ServoPos<=96000;ServoPos += 150){														// 84000 38000
+		TIM_SetCompare1(TIM2, ServoPos);															//(TIM2, 48000+PulseWidth); 12000 min 48000 mid 96000 max
+		Delay(SystemCoreClock/8/200);														// Delays for 10ms
+	}
+	TIM_SetCompare1(TIM2, 0);	
 }
