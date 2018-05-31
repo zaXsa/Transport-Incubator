@@ -13,11 +13,14 @@
 #include "stm32f0xx_conf.h"
 #include "helper.h"
 #include "Servo.h"
+#include "math.h"
 
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
 uint32_t ServoPos;
+float TempDesired;
+float HumDesired;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -128,4 +131,27 @@ void right(){
 		Delay(SystemCoreClock/8/200);														// Delays for 10ms
 	}
 	TIM_SetCompare4(TIM2, 0);	
+}
+
+void setTemp(float Temp){
+	uint32_t NewTemp;
+	long BufPWM;
+	BufPWM = 9600*(2*pow(TempDesired-Temp,3) + 30 );
+	if(BufPWM > 950000){
+		NewTemp = 950000;
+	}else if(BufPWM < 0){
+		NewTemp = 0;
+	}else{
+		NewTemp = BufPWM;
+	}	
+	TIM_SetCompare2(TIM2,NewTemp);
+}
+
+void setHunmidity(float Hum){
+	if(HumDesired-Hum < 5){
+		TIM_SetCompare4(TIM2,30000);
+	}else if(HumDesired-Hum < 20){
+		TIM_SetCompare4(TIM2,52000);
+	}else
+		TIM_SetCompare4(TIM2,96000);
 }

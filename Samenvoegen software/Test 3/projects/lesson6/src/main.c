@@ -40,8 +40,8 @@ extern uint32_t ServoPos;
 // Main
 // ----------------------------------------------------------------------------
 int main(void){
-	double humidity;
-	double temperature;
+	float humidity;
+	float temperature;
 	float TempC, TempInfra;
 	uint8_t buf[4] = {1,2,3,4};
 	char charbuf[10];

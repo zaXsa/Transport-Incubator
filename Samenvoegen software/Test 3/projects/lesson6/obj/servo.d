@@ -30,3 +30,4 @@
 .\obj\servo.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
 .\obj\servo.o: .\inc\helper.h
 .\obj\servo.o: .\inc\Servo.h
+.\obj\servo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

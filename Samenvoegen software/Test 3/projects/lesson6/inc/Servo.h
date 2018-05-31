@@ -25,5 +25,6 @@
 void PWMConfig(void);
 void right(void);
 void left(void);
+void setTemp(float Temp);
 
 #endif // _SERVO_H_

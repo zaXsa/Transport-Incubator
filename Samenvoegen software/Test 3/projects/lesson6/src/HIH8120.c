@@ -68,7 +68,7 @@ void MesureHIH8120(uint8_t buf[], int size){
   * @retval returns the humidity as a double
   */
 double ReadHumidity(const uint8_t buf[], const int size){
-	int reading_hum;
+	float reading_hum;
 	
 	// Uses the first 2 bytes from the HIH8120 and calculates the humidity
 	reading_hum = (buf[0]<<8) + buf[1];
@@ -81,7 +81,7 @@ double ReadHumidity(const uint8_t buf[], const int size){
   * @retval returns the temperature as a double
   */
 double ReadTemperature(const uint8_t buf[], const int size){
-	int reading_temp;
+	float reading_temp;
 	
 	// Uses the last 2 bytes from the HIH8120 and calculates the Temperature
 	reading_temp = (buf[2]<<6) + (buf[3]>>2);
