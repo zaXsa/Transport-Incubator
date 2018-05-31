@@ -132,12 +132,6 @@ float TempInfra = 0.0;
     USART_Putstr(" Tempinfra\r\n");
 
 		USART_Putstr(" ----------------------------------- \n");
-
-		
-
-			 
-		
-
   }
 }
 
