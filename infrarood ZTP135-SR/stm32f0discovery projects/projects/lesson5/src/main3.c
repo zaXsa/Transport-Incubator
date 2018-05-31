@@ -15,6 +15,7 @@
 #include "helper.h"
 #include <math.h>
 
+
 // ----------------------------------------------------------------------------
 // Function prototypes
 // ----------------------------------------------------------------------------
@@ -105,7 +106,7 @@ float TempInfra = 0.0;
     TempK = (beta / log(Rout / Rinf)); // calc for temperature 
     TempC = TempK - 273.15;
 		  
-		TempInfra = Vin*(((float)adc2/4095)-0.5)/0.18+TempC;
+		TempInfra = Vin*(((float)adc2/4095)-0.5)/0.2+TempC;
 
 		USART_Putstr("adc1 ");
     USART_itoa(adc, str);

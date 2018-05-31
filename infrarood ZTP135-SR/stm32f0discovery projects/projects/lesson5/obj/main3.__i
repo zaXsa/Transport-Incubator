@@ -1,0 +1,6 @@
+-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery
+-I.\RTE\_ADC_Temperature_Sensor
+-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include
+-IC:\Keil_v5\ARM\CMSIS\Include
+-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX
+-o .\obj\main3.o --omf_browse .\obj\main3.crf --depend .\obj\main3.d "src\main3.c"
