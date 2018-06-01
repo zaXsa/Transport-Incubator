@@ -32,10 +32,14 @@
 #include "stm32f0xx_it.h"
 #include "STM32F0_discovery.h"
 
+#include "Buttons.h"
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
 extern volatile char rx_buffer;
+extern int CurrentMode;
+extern float HumDesired;
+extern float TempDesired;
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -131,7 +135,7 @@ void EXTI4_15_IRQHandler(void){
 		EXTI_ClearFlag(EXTI_Line6);
 	}
 	if(EXTI_GetITStatus(EXTI_Line7)){
-		STM_EVAL_LEDToggle(LED3);	
+		SetNextMode();
 		EXTI_ClearFlag(EXTI_Line7);
 	}
 }

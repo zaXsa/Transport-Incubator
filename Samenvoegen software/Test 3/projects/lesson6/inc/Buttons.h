@@ -23,5 +23,6 @@
   Function prototypes
 ******************************************************************************/
 void InputEnable(void);
+void SetNextMode(void);
 
 #endif // _BUTTONS_H_

@@ -22,7 +22,11 @@
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
-
+/**
+  * @brief  This function initializes the ADC confertion for channel 11 and 12
+  * @param  No parameters
+  * @retval none
+  */
 void ADC_Setup(){
   GPIO_InitTypeDef GPIO_InitStructure;
   ADC_InitTypeDef  ADC_InitStructure;
@@ -66,28 +70,33 @@ void ADC_Setup(){
   // Wait until ADC enabled
   while(ADC_GetFlagStatus(ADC1, ADC_FLAG_ADEN) == RESET); 
 	
-	ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);//PC1 is de ADC pin
-	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);//PC1 is de ADC pin
+	ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);			//PC1 is de ADC pin
+	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);			//PC2 is de ADC pin
 }
-
-void MeasureADC(float *TempC, float *TempInfra){
+/**
+  * @brief  This function measures the ADC pins and calculates the temperature
+  * @param  No parameters
+  * @retval returns the temperature of the object infront 
+  */
+void MeasureADC(float *TempInfra){
 	uint16_t adc, adc2;
 	
-	const float Vin = 3.3;   										// [V]
-	const int Rt = 100000;  										// Resistor t [ohm] serie weerstand vaste waarde
-	const int R0 = 100000;  										// value of rct in T0 [ohm] 25º C
-	const float T0 = 298.15; 										// use T0 in Kelvin [K] 25º C
-	const int beta = 3960; 											// static value	
-	const float Rinf = R0 * exp(-beta / T0);  	// initial parameters [ohm]
+	const float Vin = 3.3;   													// [V]
+	const int Rt = 100000;  													// Resistor t [ohm] serie weerstand vaste waarde
+	const int R0 = 100000;  													// value of rct in T0 [ohm] 25º C
+	const float T0 = 298.15; 													// use T0 in Kelvin [K] 25º C
+	const int beta = 3960; 														// static value	
+	const float Rinf = R0 * exp(-beta / T0);  							// initial parameters [ohm]
 	
-	float Vout = 0.0;  													// Vout in A0
-	float Rout = 0.0;  													// Rout in A0
-	float TempK = 0.0; 													// variable output
-
+	float Vout = 0.0;  															// Vout in A0
+	float Rout = 0.0;  															// Rout in A0
+	float TempK = 0.0; 															// variable output
+	float TempC = 0.0; 
+	
+	//(#) Get the voltage values, using ADC_GetConversionValue() function
 	ADC_StartOfConversion(ADC1);
 	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
-	//(#) Get the voltage values, using ADC_GetConversionValue() function
-  adc = ADC_GetConversionValue(ADC1);
+	adc = ADC_GetConversionValue(ADC1);
 	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
 	adc2 = ADC_GetConversionValue(ADC1);
 	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
@@ -99,9 +108,9 @@ void MeasureADC(float *TempC, float *TempInfra){
 	//temperature = ((1952 - adc) / 6) + 25; 
 	
 	Vout=Vin*((float)adc/4095); 													// Calc for ntc
-	Rout = ((Rt * Vout) / (Vin - Vout));									// Calc Rout
-  TempK = (beta / log(Rout / Rinf)); 										// Calc for temperature 
-  *TempC = TempK - 273.15;															// Calc from Kelvin to Celcius 
+	Rout = ((Rt * Vout) / (Vin - Vout));										// Calc Rout
+	TempK = (beta / log(Rout / Rinf)); 											// Calc for temperature 
+	TempC = TempK - 273.15;														// Calc from Kelvin to Celcius 
 	  
-	*TempInfra = Vin*((((float)adc2/4095)-0.5)/0.19)+*TempC; // Calc temperature of object
+	*TempInfra = Vin*((((float)adc2/4095)-0.5)/0.19)+TempC; 			// Calc temperature of object
 }

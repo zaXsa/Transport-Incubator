@@ -12,12 +12,13 @@
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
 #include "stm32f0_discovery.h"
+
 #include "bthq21605v.h"
 #include "helper.h"
 #include "usart.h"
 #include "HIH8120.h"
 #include "Buttons.h"
-#include "Servo.h"
+#include "PWM.h"
 #include "ADC.h"
 
 #include <stdio.h>
@@ -40,11 +41,8 @@ extern uint32_t ServoPos;
 // Main
 // ----------------------------------------------------------------------------
 int main(void){
-	float humidity;
-	float temperature;
-	float TempC, TempInfra;
-	uint8_t buf[4] = {1,2,3,4};
-	char charbuf[10];
+	float humidity, temperature, TempInfra;
+	uint8_t buf[4];
 	
 	// Configure LED3 and LED4 on STM32F0-Discovery
 	STM_EVAL_LEDInit(LED3);
@@ -54,8 +52,8 @@ int main(void){
 	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	
 	// Setup USART1 (PA9(TX) & PA10(RX))
-	USART_init();																										// Initializes USART 1
-	USART_putstr("Test USART\n");
+	// USART_init();																										// Initializes USART 1
+	// USART_putstr("Test USART\n");
 	
 	// Initialize I2C1 (PB6 (SCL) & (PB7 (SDA)))
 	BTHQ21605V_Setup();																							// Initializes I2C 1
@@ -66,7 +64,7 @@ int main(void){
 	// Initialize PWM 
 	PWMConfig();
 	
-	// Initialize ADC 
+	// Initialize ADC for pin PC1 and PC2
 	ADC_Setup();
 	
 	// Initialize BTHQ21605V
@@ -78,64 +76,26 @@ int main(void){
 	BTHQ21605V_GotoXY(2,1);
 	BTHQ21605V_Puts((uint8_t *)("Test line 2")); 
 	
+	// Resets the servo to 0
+	TIM_SetCompare4(TIM2, 30000);
+	
 	// Delays for 2 seconds
 	Delay((SystemCoreClock/8)*2);
-	
+	// In case of error, set LED3 on
+	if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
+		STM_EVAL_LEDOn(LED3);
+	}
+
 	while(1){
-		// In case of error, blink LED3 very fast
-		if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
-			while(1){
-				STM_EVAL_LEDToggle(LED3);
-				Delay(SystemCoreClock/8/20);
-			}
-		}
-	
-		Delay(SystemCoreClock/8);
-		BTHQ21605V_Clear();
+		// Delays for 1 seconds
+		Delay((SystemCoreClock/8));
 		
 		MesureHIH8120(buf,4);																						// Function to make a new measurement from the HIH8120
-	
-		/* Display the the incommeing data in usart*/
-		USART_putstr("incomming data: \n");
-		itoa_simple(charbuf, buf[0]);		
-		USART_putstr(charbuf);
-		USART_putstr("\n");
-		itoa_simple(charbuf, buf[1]);                                                
-		USART_putstr(charbuf);                                                       
-		USART_putstr("\n");                                                          
-		itoa_simple(charbuf, buf[2]);                                                
-		USART_putstr(charbuf);                                                       
-		USART_putstr("\n");                                                          
-		itoa_simple(charbuf, buf[3]);                                                
-		USART_putstr(charbuf);                                                       
-		USART_putstr("\n");
-		
-		/* Get the humidity and display it */
 		humidity = ReadHumidity(buf,4);																			// Function to get the latest measured humidity
-		USART_putstr("Humidity: ");
-		itoa_simple(charbuf, humidity);
-		USART_putstr(charbuf);
-		USART_putstr("\n");
-		
-		/* Display the humidity on the first line of the  LCD screen */
-		BTHQ21605V_GotoXY(1,1);
-		BTHQ21605V_Puts((uint8_t *)("Hum:"));
-		BTHQ21605V_GotoXY(1,7);
-		BTHQ21605V_Puts((uint8_t *)(charbuf));
-		
-		/* Get the temperature and display it */
-		temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature
-		itoa_simple(charbuf, temperature);
-		USART_putstr("Temperature: ");
-		USART_putstr(charbuf);
-		USART_putstr("\n");		
-		
-		/* Display the temperture on the second line of the LCD screen */
-		BTHQ21605V_GotoXY(2,1);
-		BTHQ21605V_Puts((uint8_t *)("Temp:"));
-		BTHQ21605V_GotoXY(2,7);
-		BTHQ21605V_Puts((uint8_t *)(charbuf));
-		
-		MeasureADC(&TempC, &TempInfra);
+		setHunmidity(humidity);																						// Sets the PWM for the humidity regulator
+		temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature	
+		setTemperature(temperature);																				// Sets the PWM for the temperature regulator
+		MeasureADC(&TempInfra);																						// Function to make a new measurement from the ZTP135-sr	
+		SetDisplay();
 	}
 }

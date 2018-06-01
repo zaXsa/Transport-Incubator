@@ -9,8 +9,8 @@
     > Initial revision
 
 ******************************************************************************/
-#ifndef _ADC_H_
-#define _ADC_H_
+#ifndef _PWM_H_
+#define _PWM_H_
 
 #include "stdint.h"
 
@@ -22,7 +22,11 @@
 /******************************************************************************
   Function prototypes
 ******************************************************************************/
-void ADC_Setup(void);
-void MeasureADC(float *TempInfra);
+void PWMConfig(void);
+void right(void);
+void left(void);
+void setTemperature(float Temp);
+void setHunmidity(float Hum);
+void setServo(const uint32_t newServoPos);
 
-#endif // _ADC_H_
+#endif // _PWM_H_

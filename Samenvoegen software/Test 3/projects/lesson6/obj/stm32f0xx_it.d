@@ -30,3 +30,4 @@
 .\obj\stm32f0xx_it.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
 .\obj\stm32f0xx_it.o: .\inc\stm32f0xx_it.h
 .\obj\stm32f0xx_it.o: ..\..\utilities\STM32F0-Discovery\STM32F0_discovery.h
+.\obj\stm32f0xx_it.o: .\inc\Buttons.h

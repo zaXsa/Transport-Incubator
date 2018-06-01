@@ -34,7 +34,7 @@
 .\obj\main.o: .\inc\usart.h
 .\obj\main.o: .\inc\HIH8120.h
 .\obj\main.o: .\inc\Buttons.h
-.\obj\main.o: .\inc\Servo.h
+.\obj\main.o: .\inc\PWM.h
 .\obj\main.o: .\inc\ADC.h
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

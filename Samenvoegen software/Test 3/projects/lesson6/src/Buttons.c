@@ -13,19 +13,23 @@
 #include "stm32f0xx_conf.h"
 #include "helper.h"
 #include "Buttons.h"
+#include "bthq21605v.h"
 
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
+int CurrentMode = 0;
+extern float HumDesired;
+extern float TempDesired;
 
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
 
 /**
-  * @brief  This function makes the HIH8120 start is measurements and saves it in a array
-  * @param  The array where the data is saved in and the size of the array.
-  * @retval The HIH8120 data in the array
+  * @brief  This function initializes the interrupt input buttons A4, A5, A6 and A7
+  * @param  No parameters
+  * @retval none
   */
 void InputEnable(){
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -81,4 +85,17 @@ void InputEnable(){
 	NVIC_InitStructure.NVIC_IRQChannelPriority = 0x00;										/* Set priority */
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;												/* Enable interrupt */	
 	NVIC_Init(&NVIC_InitStructure);																				/* Add to NVIC */
-}		
+}	
+
+/**
+  * @brief  This function sets the new mode and updates the display
+  * @param  No parameters
+  * @retval The new mode
+  */
+void SetNextMode(){
+	CurrentMode++;
+	if (CurrentMode>2){
+		CurrentMode = 0;
+	}													
+	SetDisplay();
+}

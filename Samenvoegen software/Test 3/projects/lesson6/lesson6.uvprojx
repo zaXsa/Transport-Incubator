@@ -416,14 +416,14 @@
               <FilePath>.\src\Buttons.c</FilePath>
             </File>
             <File>
-              <FileName>Servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Servo.c</FilePath>
-            </File>
-            <File>
               <FileName>ADC.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\PWM.c</FilePath>
             </File>
           </Files>
         </Group>

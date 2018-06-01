@@ -17,6 +17,7 @@
 // Global variables
 // ----------------------------------------------------------------------------
 uint32_t BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
+extern int CurrentMode;
 
 // ----------------------------------------------------------------------------
 // Local function prototypes
@@ -519,30 +520,52 @@ uint8_t BTHQ21605V_Getc(void)
   *         I2C_GetFlagStatus() for valid parameter values
   * @retval none
   */
-void BTHQ21605V_WaitForI2CFlag(uint32_t flag)
-{
-  uint32_t timeout = BTHQ21605V_TIMEOUT;
-  
-  if(flag == I2C_ISR_BUSY)
-  {
-    while(I2C_GetFlagStatus(I2C1, flag) != RESET)
-    {
-      if(timeout-- == 0)
-      {
+void BTHQ21605V_WaitForI2CFlag(uint32_t flag){
+  uint32_t timeout = BTHQ21605V_TIMEOUT;  
+  if(flag == I2C_ISR_BUSY){
+    while(I2C_GetFlagStatus(I2C1, flag) != RESET){
+      if(timeout-- == 0){
+        BTHQ21605V_CommStatus = BTHQ21605V_COMM_ERROR;
+        return;
+      }
+    }
+  } else{
+    while(I2C_GetFlagStatus(I2C1, flag) == RESET){
+      if(timeout-- == 0){
         BTHQ21605V_CommStatus = BTHQ21605V_COMM_ERROR;
         return;
       }
     }
   }
-  else
-  {
-    while(I2C_GetFlagStatus(I2C1, flag) == RESET)
-    {
-      if(timeout-- == 0)
-      {
-        BTHQ21605V_CommStatus = BTHQ21605V_COMM_ERROR;
-        return;
-      }
-    }
-  }
+}
+
+/**
+  * @brief  This function checks the currentmode and displays the wanted information 
+  * @param  No parameters
+  * @retval none
+  */
+void SetDisplay(){
+	BTHQ21605V_Clear();
+	switch(CurrentMode){
+		case 0:
+			BTHQ21605V_GotoXY(1,1);
+			BTHQ21605V_Puts((uint8_t *)("Wanted Temp: "));
+			BTHQ21605V_GotoXY(2,1);
+			BTHQ21605V_Puts((uint8_t *)("Current Temp: ")); 
+			break;
+		case 1:
+			BTHQ21605V_GotoXY(1,1);
+			BTHQ21605V_Puts((uint8_t *)("Wanted Hum: "));
+			BTHQ21605V_GotoXY(2,1);
+			BTHQ21605V_Puts((uint8_t *)("Current Hum: ")); 
+			break;
+		case 2:
+			BTHQ21605V_GotoXY(1,1);
+			BTHQ21605V_Puts((uint8_t *)("Baby Temp: "));
+			break;
+		default:
+			BTHQ21605V_GotoXY(1,1);
+			BTHQ21605V_Puts((uint8_t *)("Mode Error: "));
+			break;
+	}
 }
