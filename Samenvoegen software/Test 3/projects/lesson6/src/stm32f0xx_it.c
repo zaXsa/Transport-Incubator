@@ -122,12 +122,12 @@ void EXTI0_1_IRQHandler(void){
 }
 
 void EXTI4_15_IRQHandler(void){
-	if(EXTI_GetITStatus(EXTI_Line4)){																	// Easier way
-		STM_EVAL_LEDToggle(LED4);	
+	if(EXTI_GetITStatus(EXTI_Line4)){																	
+		DesiredUp();	
 		EXTI_ClearFlag(EXTI_Line4);
 	}
 	if(EXTI_GetITStatus(EXTI_Line5)){
-		STM_EVAL_LEDToggle(LED3);	
+		DesiredDown();	
 		EXTI_ClearFlag(EXTI_Line5);
 	}
 	if(EXTI_GetITStatus(EXTI_Line6)){

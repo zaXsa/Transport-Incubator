@@ -30,3 +30,4 @@
 .\obj\bthq21605v.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
 .\obj\bthq21605v.o: .\inc\bthq21605v.h
 .\obj\bthq21605v.o: .\inc\helper.h
+.\obj\bthq21605v.o: .\inc\usart.h

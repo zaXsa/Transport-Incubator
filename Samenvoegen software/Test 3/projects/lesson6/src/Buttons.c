@@ -99,3 +99,45 @@ void SetNextMode(){
 	}													
 	SetDisplay();
 }
+
+void DesiredUp(){
+	switch(CurrentMode){
+		case 0:
+			TempDesired++;
+			if(TempDesired > 38){
+				TempDesired = 38;
+			}
+			break;
+		case 1:
+			HumDesired++;
+			if(HumDesired > 80){
+				HumDesired = 80;
+			}
+			break;
+		case 2:
+			break;
+		default:
+			break;
+	}
+}
+
+void DesiredDown(){
+	switch(CurrentMode){
+		case 0:
+			TempDesired--;
+			if(TempDesired < 24){
+				TempDesired = 24;
+			}
+			break;
+		case 1:
+			HumDesired--;
+			if(HumDesired < 40){
+				HumDesired = 80;
+			}
+			break;
+		case 2:
+			break;
+		default:
+			break;
+	}
+}

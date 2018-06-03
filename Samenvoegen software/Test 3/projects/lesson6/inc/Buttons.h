@@ -24,5 +24,7 @@
 ******************************************************************************/
 void InputEnable(void);
 void SetNextMode(void);
+void DesiredUp(void);
+void DesiredDown(void);
 
 #endif // _BUTTONS_H_
