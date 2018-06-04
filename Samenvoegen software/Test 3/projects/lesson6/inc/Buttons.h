@@ -23,7 +23,6 @@
   Function prototypes
 ******************************************************************************/
 void InputEnable(void);
-void InputDisable(void);
 void SetNextMode(void);
 void DesiredUp(void);
 void DesiredDown(void);

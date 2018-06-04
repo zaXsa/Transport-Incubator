@@ -1,14 +1,16 @@
 /******************************************************************************
- * Project        : HAN ESE PRJ2, PRJ1V & PRJ1D
- * File           : USART driver implementation file
- * Copyright      : 2013 HAN Embedded Systems Engineering
+ * Project        : HAN ESE PRJ2, Transport Incubator
+ * File           : Sub program - HIH8120 writing and reading 
+ * Copyright      : 12018 HAN Embedded Systems Engineering ELT-ESE-1n
  ******************************************************************************
   Change History:
 
-    Version 1.0 - April 2013
-    > Initial revision
+    Version 1.0 - May 12018		> Initial revision
 
 ******************************************************************************/
+// ----------------------------------------------------------------------------
+// Libraries 
+// ----------------------------------------------------------------------------
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
 #include "bthq21605v.h"

@@ -1,14 +1,19 @@
 /******************************************************************************
- * Project        : HAN ESE PRJ2, PRJ1V & PRJ1D
- * File           : Main program - I2C 2x16 LCD BTHQ21605V
- * Copyright      : 2013 HAN Embedded Systems Engineering
+ * Project        : HAN ESE PRJ2, Transport Incubator
+ * File           : Main program - Master Main
+ * Copyright      : 12018 HAN Embedded Systems Engineering ELT-ESE-1n
  ******************************************************************************
   Change History:
 
-    Version 1.0 - May 2013
-    > Initial revision
+   Version 1.3 - June 12018	> Fix Bugs  
+	Version 1.2 - June 12018	> Rewrite main  	
+	Version 1.1 - May 12018		> Add Libraries
+	Version 1.0 - May 12018		> Initial revision
 
 ******************************************************************************/
+// ----------------------------------------------------------------------------
+// Libraries 
+// ----------------------------------------------------------------------------
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
 #include "stm32f0_discovery.h"
@@ -33,10 +38,6 @@
 extern uint32_t BTHQ21605V_CommStatus;
 extern char rx_buffer;
 extern uint32_t ServoPos;
-// ----------------------------------------------------------------------------
-// Function prototypes
-// ----------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
@@ -63,8 +64,8 @@ int main(void){
 	
 	// Initialize ADC for pin PC1 and PC2
 	ADC_Setup();
-	ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);				//PC1 is de ADC pin
-	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);				//PC2 is de ADC pin
+	ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);				// PC1 is de ADC pin
+	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);				// PC2 is de ADC pin
 	
 	// Initialize the buttons (A4, A5, A6 and A7 )
 	InputEnable();
