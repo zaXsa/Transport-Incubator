@@ -1,7 +1,7 @@
 /******************************************************************************
  * Project        : HAN ESE PRJ2, Transport Incubator
  * File           : Sub program - PWM initialization and control 
- * Copyright      : 12018 HAN Embedded Systems Engineering ELT-ESE-1n
+ * Copyright      : 12018 HAN Embedded Systems Engineering ZT5-1
  ******************************************************************************
   Change History:
 
