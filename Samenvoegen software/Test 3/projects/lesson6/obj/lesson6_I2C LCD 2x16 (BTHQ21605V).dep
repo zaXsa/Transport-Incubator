@@ -1,5 +1,5 @@
 Dependencies for Project 'lesson6', Target 'I2C LCD 2x16 (BTHQ21605V)': (DO NOT MODIFY !)
-F (.\src\main.c)(0x5B15228A)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+F (.\src\main.c)(0x5B15384A)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (..\..\libraries\CMSIS\ST\STM32F0xx\Include\stm32f0xx.h)(0x5B03C7A5)
 I (..\..\libraries\CMSIS\Include\core_cm0.h)(0x5B03C7A4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BE5B4)
@@ -35,7 +35,7 @@ I (.\inc\usart.h)(0x5B03C7AF)
 I (.\inc\HIH8120.h)(0x5B03C7AD)
 I (.\inc\Buttons.h)(0x5B14D188)
 I (.\inc\PWM.h)(0x5B14D188)
-I (.\inc\ADC.h)(0x5B14D188)
+I (.\inc\ADC.h)(0x5B153163)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BE5B4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588BE5B4)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588BE5B4)
@@ -196,7 +196,7 @@ I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h)(0x5B03C7A9)
 I (.\inc\bthq21605v.h)(0x5B14D189)
 I (.\inc\helper.h)(0x5B03C7AE)
 I (.\inc\HIH8120.h)(0x5B03C7AD)
-F (.\src\Buttons.c)(0x5B14FF9D)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\buttons.o --omf_browse .\obj\buttons.crf --depend .\obj\buttons.d)
+F (.\src\Buttons.c)(0x5B15372F)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\buttons.o --omf_browse .\obj\buttons.crf --depend .\obj\buttons.d)
 I (..\..\libraries\CMSIS\ST\STM32F0xx\Include\stm32f0xx.h)(0x5B03C7A5)
 I (..\..\libraries\CMSIS\Include\core_cm0.h)(0x5B03C7A4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BE5B4)
@@ -228,7 +228,7 @@ I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h)(0x5B03C7A9)
 I (.\inc\helper.h)(0x5B03C7AE)
 I (.\inc\Buttons.h)(0x5B14D188)
 I (.\inc\bthq21605v.h)(0x5B14D189)
-F (.\src\ADC.c)(0x5B15251E)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\adc.o --omf_browse .\obj\adc.crf --depend .\obj\adc.d)
+F (.\src\ADC.c)(0x5B1538EF)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\adc.o --omf_browse .\obj\adc.crf --depend .\obj\adc.d)
 I (..\..\libraries\CMSIS\ST\STM32F0xx\Include\stm32f0xx.h)(0x5B03C7A5)
 I (..\..\libraries\CMSIS\Include\core_cm0.h)(0x5B03C7A4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BE5B4)
@@ -258,7 +258,7 @@ I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h)(0x5B03C7A9)
 I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h)(0x5B03C7A9)
 I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h)(0x5B03C7A9)
 I (.\inc\helper.h)(0x5B03C7AE)
-I (.\inc\ADC.h)(0x5B14D188)
+I (.\inc\ADC.h)(0x5B153163)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BE5B4)
 F (.\src\PWM.c)(0x5B150AA7)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_I2C_LCD_2x16__BTHQ21605V_-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\pwm.o --omf_browse .\obj\pwm.crf --depend .\obj\pwm.d)
 I (..\..\libraries\CMSIS\ST\STM32F0xx\Include\stm32f0xx.h)(0x5B03C7A5)

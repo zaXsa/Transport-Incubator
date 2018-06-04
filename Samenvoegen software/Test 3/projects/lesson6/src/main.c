@@ -53,8 +53,8 @@ int main(void){
 	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	
 	// Setup USART1 (PA9(TX) & PA10(RX))
-	USART_init();																										// Initializes USART 1
-	USART_putstr("Test USART\n");
+//	USART_init();																										// Initializes USART 1
+//	USART_putstr("Test USART\n");
 	
 	// Initialize I2C1 (PB6 (SCL) & (PB7 (SDA)))
 	BTHQ21605V_Setup();																							// Initializes I2C 1
@@ -92,12 +92,12 @@ int main(void){
 		// Delays for 1 seconds
 		Delay((SystemCoreClock/8));
 		
-		//MesureHIH8120(buf,4);																						// Function to make a new measurement from the HIH8120
-		//humidity = ReadHumidity(buf,4);																			// Function to get the latest measured humidity
+		MesureHIH8120(buf,4);																						// Function to make a new measurement from the HIH8120
+		humidity = ReadHumidity(buf,4);																			// Function to get the latest measured humidity
 		//setHunmidity(humidity);																						// Sets the PWM for the humidity regulator
-		//temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature	
+		temperature = ReadTemperature(buf,4);																	// Function to get the latest measured temperature	
 		//setTemperature(temperature);																				// Sets the PWM for the temperature regulator
 		MeasureADC(&TempInfra);																						// Function to make a new measurement from the ZTP135-sr	
-		//SetDisplay();
+		SetDisplay();
 	}
 }

@@ -36,12 +36,12 @@ void ADC_Setup(){
   //(#) Enable the ADC interface clock using 
   //    RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); 
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
   
   //(#) ADC pins configuration
   //   (++) Enable the clock for the ADC GPIOs using the following function:
   //        RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOx, ENABLE);   
   //   (++) Configure these ADC pins in analog mode using GPIO_Init();  
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
@@ -51,7 +51,6 @@ void ADC_Setup(){
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
   GPIO_Init(GPIOC, &GPIO_InitStructure);
-	
   
   //(#) Configure the ADC conversion resolution, data alignment, external
   //    trigger and edge, scan direction and Enable/Disable the continuous mode
@@ -68,7 +67,6 @@ void ADC_Setup(){
 
   //(#) Activate the ADC peripheral using ADC_Cmd() function.
   ADC_Cmd(ADC1, ENABLE);  
-  
 
   // Wait until ADC enabled
   while(ADC_GetFlagStatus(ADC1, ADC_FLAG_ADEN) == RESET); 
@@ -80,7 +78,7 @@ void ADC_Setup(){
   * @retval returns the temperature of the object infront 
   */
 void MeasureADC(float *TempInfra){
-	volatile uint16_t adc; 
+	volatile uint16_t adc;
 	volatile uint16_t adc2;
 	
 	const float Vin = 3.3;   													// [V]
@@ -95,19 +93,12 @@ void MeasureADC(float *TempInfra){
 	float TempK = 0.0; 																// variable output
 	float TempC = 0.0; 
 	
-	//(#) Get the voltage values, using ADC_GetConversionValue() function
-	ADC_StartOfConversion(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
-	adc = ADC_GetConversionValue(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
-	adc2 = ADC_GetConversionValue(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
-   
-
+	extra(&adc,&adc2);
+	
 	// Calculate corresponding voltage level    
 	// V25 = (4095 * 1.43V) / 3V = 1952
 	// Avg_Slope = 4.3mV / (3V / 4095) = 5,8695 ~ 6
-	//temperature = ((1952 - adc) / 6) + 25; 
+	// temperature = ((1952 - adc) / 6) + 25; 
 	
 	Vout=Vin*((float)adc/4095); 																	// Calc for ntc
 	Rout = ((Rt * Vout) / (Vin - Vout));													// Calc Rout
@@ -116,4 +107,14 @@ void MeasureADC(float *TempInfra){
 	  
 	*TempInfra = Vin*((((float)adc2/4095)-0.5)/0.19)+TempC; 			// Calc temperature of object
 	TempBabyAcc =	*TempInfra;
+}
+
+void extra(volatile uint16_t *adc,volatile uint16_t *adc2){
+	//(#) Get the voltage values, using ADC_GetConversionValue() function
+	ADC_StartOfConversion(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+	*adc = ADC_GetConversionValue(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+	*adc2 = ADC_GetConversionValue(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
 }

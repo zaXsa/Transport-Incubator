@@ -24,5 +24,6 @@
 ******************************************************************************/
 void ADC_Setup(void);
 void MeasureADC(float *TempInfra);
+void extra(volatile uint16_t *adc, volatile uint16_t *adc2);
 
 #endif // _ADC_H_
