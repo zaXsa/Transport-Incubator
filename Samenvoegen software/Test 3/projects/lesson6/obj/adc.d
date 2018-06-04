@@ -28,6 +28,7 @@
 .\obj\adc.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\obj\adc.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\obj\adc.o: ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
+.\obj\adc.o: .\inc\Buttons.h
 .\obj\adc.o: .\inc\helper.h
 .\obj\adc.o: .\inc\ADC.h
 .\obj\adc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

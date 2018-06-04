@@ -11,6 +11,7 @@
 ******************************************************************************/
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
+#include "Buttons.h"
 #include "helper.h"
 #include "ADC.h"
 
@@ -77,9 +78,9 @@ void ADC_Setup(){
   * @param  No parameters
   * @retval returns the temperature of the object infront 
   */
-void MeasureADC(float *TempInfra){
-	volatile uint16_t adc;
-	volatile uint16_t adc2;
+void MeasureADC(){
+	uint16_t adc;
+	uint16_t adc2;
 	
 	const float Vin = 3.3;   													// [V]
 	const int Rt = 100000;  													// Resistor t [ohm] serie weerstand vaste waarde
@@ -93,7 +94,12 @@ void MeasureADC(float *TempInfra){
 	float TempK = 0.0; 																// variable output
 	float TempC = 0.0; 
 	
-	extra(&adc,&adc2);
+	ADC_StartOfConversion(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+	adc = ADC_GetConversionValue(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
+	adc2 = ADC_GetConversionValue(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
 	
 	// Calculate corresponding voltage level    
 	// V25 = (4095 * 1.43V) / 3V = 1952
@@ -105,16 +111,10 @@ void MeasureADC(float *TempInfra){
 	TempK = (beta / log(Rout / Rinf)); 														// Calc for temperature 
 	TempC = TempK - 273.15;																				// Calc from Kelvin to Celcius 
 	  
-	*TempInfra = Vin*((((float)adc2/4095)-0.5)/0.19)+TempC; 			// Calc temperature of object
-	TempBabyAcc =	*TempInfra;
+	TempBabyAcc = Vin*((((float)adc2/4095)-0.5)/0.19)+TempC; 			// Calc temperature of object
 }
 
 void extra(volatile uint16_t *adc,volatile uint16_t *adc2){
 	//(#) Get the voltage values, using ADC_GetConversionValue() function
-	ADC_StartOfConversion(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
-	*adc = ADC_GetConversionValue(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {;}
-	*adc2 = ADC_GetConversionValue(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOSEQ) == RESET) {;}
+
 }
