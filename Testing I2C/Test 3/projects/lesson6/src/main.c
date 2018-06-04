@@ -36,8 +36,8 @@ extern volatile char rx_buffer;
 // Main
 // ----------------------------------------------------------------------------
 int main(void){
-	double humidity;
-	double temperature;
+	volatile double humidity;
+	volatile double temperature;
 	uint8_t buf[4] = {1,2,3,4};
 	char charbuf[10];
 	// Configure LED3 and LED4 on STM32F0-Discovery

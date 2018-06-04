@@ -689,50 +689,66 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>54</LineNumber>
+          <LineNumber>102</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134218218</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\src\main2.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\src\main3.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\lesson5\src/main3.c\102</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>106</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134218298</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\src\main3.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\lesson5\src/main3.c\106</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>103</LineNumber>
+          <LineNumber>93</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134218206</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\lesson5.uvprojx</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\src\main3.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\lesson5\src/main3.c\93</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>118</LineNumber>
+          <LineNumber>91</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134218184</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\lesson5.uvprojx</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\teunn\Documents\GitHub\Transport-Incubator\infrarood ZTP135-SR\stm32f0discovery projects\projects\lesson5\src\main3.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\lesson5\src/main3.c\91</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

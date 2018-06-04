@@ -18,7 +18,9 @@
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
-
+extern float TempBabyAcc;
+extern float HumAcc;
+extern float TempAcc;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -67,30 +69,30 @@ void ADC_Setup(){
   //(#) Activate the ADC peripheral using ADC_Cmd() function.
   ADC_Cmd(ADC1, ENABLE);  
   
+
   // Wait until ADC enabled
   while(ADC_GetFlagStatus(ADC1, ADC_FLAG_ADEN) == RESET); 
-	
-	ADC_ChannelConfig(ADC1, ADC_Channel_11, ADC_SampleTime_239_5Cycles);			//PC1 is de ADC pin
-	ADC_ChannelConfig(ADC1, ADC_Channel_12, ADC_SampleTime_239_5Cycles);			//PC2 is de ADC pin
 }
+
 /**
   * @brief  This function measures the ADC pins and calculates the temperature
   * @param  No parameters
   * @retval returns the temperature of the object infront 
   */
 void MeasureADC(float *TempInfra){
-	uint16_t adc, adc2;
+	volatile uint16_t adc; 
+	volatile uint16_t adc2;
 	
 	const float Vin = 3.3;   													// [V]
 	const int Rt = 100000;  													// Resistor t [ohm] serie weerstand vaste waarde
 	const int R0 = 100000;  													// value of rct in T0 [ohm] 25º C
 	const float T0 = 298.15; 													// use T0 in Kelvin [K] 25º C
 	const int beta = 3960; 														// static value	
-	const float Rinf = R0 * exp(-beta / T0);  							// initial parameters [ohm]
+	const float Rinf = R0 * exp(-beta / T0);  				// initial parameters [ohm]
 	
-	float Vout = 0.0;  															// Vout in A0
-	float Rout = 0.0;  															// Rout in A0
-	float TempK = 0.0; 															// variable output
+	float Vout = 0.0;  																// Vout in A0
+	float Rout = 0.0;  																// Rout in A0
+	float TempK = 0.0; 																// variable output
 	float TempC = 0.0; 
 	
 	//(#) Get the voltage values, using ADC_GetConversionValue() function
@@ -107,10 +109,11 @@ void MeasureADC(float *TempInfra){
 	// Avg_Slope = 4.3mV / (3V / 4095) = 5,8695 ~ 6
 	//temperature = ((1952 - adc) / 6) + 25; 
 	
-	Vout=Vin*((float)adc/4095); 													// Calc for ntc
-	Rout = ((Rt * Vout) / (Vin - Vout));										// Calc Rout
-	TempK = (beta / log(Rout / Rinf)); 											// Calc for temperature 
-	TempC = TempK - 273.15;														// Calc from Kelvin to Celcius 
+	Vout=Vin*((float)adc/4095); 																	// Calc for ntc
+	Rout = ((Rt * Vout) / (Vin - Vout));													// Calc Rout
+	TempK = (beta / log(Rout / Rinf)); 														// Calc for temperature 
+	TempC = TempK - 273.15;																				// Calc from Kelvin to Celcius 
 	  
 	*TempInfra = Vin*((((float)adc2/4095)-0.5)/0.19)+TempC; 			// Calc temperature of object
+	TempBabyAcc =	*TempInfra;
 }

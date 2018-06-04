@@ -21,6 +21,9 @@
 uint32_t ServoPos = 30000;
 float TempDesired = 35;
 float HumDesired = 60;
+float TempBabyAcc = 0;
+float HumAcc = 0;
+float TempAcc = 0;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------

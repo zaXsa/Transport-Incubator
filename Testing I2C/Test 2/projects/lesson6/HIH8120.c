@@ -18,7 +18,8 @@
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
-
+extern volatile double humidityy;
+extern volatile double temperaturee;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -29,6 +30,8 @@
   * @retval The HIH8120 data in the array
   */
 void ReadHIH8120(uint8_t buf[], int size){
+		int reading_hum;
+	int reading_temp;
 	// Wait while I2C peripheral is not ready
 	BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 
@@ -60,6 +63,16 @@ void ReadHIH8120(uint8_t buf[], int size){
 	BTHQ21605V_WaitForI2CFlag(I2C_ISR_STOPF);
 	// Clears the stop condition flag
 	I2C1->ICR = I2C_ICR_STOPCF;
+	
+
+	
+	// Uses the first 2 bytes from the HIH8120 and calculates the humidity
+	reading_hum = (buf[0]<<8) + buf[1];
+	humidityy = reading_hum / 16382.0 * 100.0;
+	
+	// Uses the last 2 bytes from the HIH8120 and calculates the Temperature
+	reading_temp = (buf[2]<<6) + (buf[3]>>2);
+	temperaturee = reading_temp / 16382.0 * 165.0 - 40;
 }
 
 /**

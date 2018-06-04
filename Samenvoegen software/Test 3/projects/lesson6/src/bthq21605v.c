@@ -21,6 +21,9 @@ uint32_t BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
 extern int CurrentMode;
 extern float HumDesired;
 extern float TempDesired;
+extern float TempBabyAcc;
+extern float HumAcc;
+extern float TempAcc;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -548,32 +551,42 @@ void BTHQ21605V_WaitForI2CFlag(uint32_t flag){
   */
 void SetDisplay(){
 	char CharBuff[10];
+	char CharBuff2[10];
 	BTHQ21605V_Clear();
 	switch(CurrentMode){
 		case 0:
 			itoa_simple(CharBuff, TempDesired);
-			BTHQ21605V_GotoXY(1,1);
+			itoa_simple(CharBuff2, TempAcc);
+			BTHQ21605V_GotoXY(0,0);
 			BTHQ21605V_Puts((uint8_t *)("Want Temp: "));
-			BTHQ21605V_GotoXY(1,13);
+			BTHQ21605V_GotoXY(12,0);
 			BTHQ21605V_Puts((uint8_t *)(CharBuff));
-			BTHQ21605V_GotoXY(2,1);
+			BTHQ21605V_GotoXY(0,1);
 			BTHQ21605V_Puts((uint8_t *)("Cur Temp: ")); 
+			BTHQ21605V_GotoXY(12,1);
+			BTHQ21605V_Puts((uint8_t *)(CharBuff2));
 			break;
 		case 1:
 			itoa_simple(CharBuff, HumDesired);
-			BTHQ21605V_GotoXY(1,1);
+			itoa_simple(CharBuff2, HumAcc);
+			BTHQ21605V_GotoXY(0,0);
 			BTHQ21605V_Puts((uint8_t *)("Want Hum: "));
-			BTHQ21605V_GotoXY(1,13);
+			BTHQ21605V_GotoXY(12,0);
 			BTHQ21605V_Puts((uint8_t *)(CharBuff));
-			BTHQ21605V_GotoXY(2,1);
+			BTHQ21605V_GotoXY(0,1);
 			BTHQ21605V_Puts((uint8_t *)("Cur Hum: ")); 
+			BTHQ21605V_GotoXY(12,1);
+			BTHQ21605V_Puts((uint8_t *)(CharBuff2));		
 			break;
 		case 2:
-			BTHQ21605V_GotoXY(1,1);
+			itoa_simple(CharBuff, TempBabyAcc);
+			BTHQ21605V_GotoXY(0,0);
 			BTHQ21605V_Puts((uint8_t *)("Baby Temp: "));
+			BTHQ21605V_GotoXY(12,0);
+			BTHQ21605V_Puts((uint8_t *)(CharBuff));		
 			break;
 		default:
-			BTHQ21605V_GotoXY(1,1);
+			BTHQ21605V_GotoXY(0,0);
 			BTHQ21605V_Puts((uint8_t *)("Mode Error: "));
 			break;
 	}

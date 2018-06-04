@@ -31,7 +31,7 @@ I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h)(0x4F6C6E38)
 I (..\..\libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h)(0x4F6C6E38)
 I (..\..\utilities\STM32F0-Discovery\stm32f0_discovery.h)(0x4F6C6042)
 I (.\inc\helper.h)(0x518A08EA)
-F (.\src\main3.c)(0x5B0D37A7)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_ADC_Temperature_Sensor-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\main3.o --omf_browse .\obj\main3.crf --depend .\obj\main3.d)
+F (.\src\main3.c)(0x5B14D18D)(-c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork -I .\inc -I ..\..\libraries\CMSIS\Include -I ..\..\libraries\CMSIS\ST\STM32F0xx\Include -I ..\..\libraries\STM32F0xx_StdPeriph_Driver\inc -I ..\..\utilities\STM32F0-Discovery-I.\RTE\_ADC_Temperature_Sensor-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F051x8 -DUSE_STDPERIPH_DRIVER -DSTM32F0XX-o .\obj\main3.o --omf_browse .\obj\main3.crf --depend .\obj\main3.d)
 I (..\..\libraries\CMSIS\ST\STM32F0xx\Include\stm32f0xx.h)(0x5AFD3A17)
 I (..\..\libraries\CMSIS\Include\core_cm0.h)(0x5AFD3A17)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BE5B4)

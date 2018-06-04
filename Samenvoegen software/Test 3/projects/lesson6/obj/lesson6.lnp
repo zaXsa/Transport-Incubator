@@ -1,9 +1,9 @@
 --cpu Cortex-M0
 ".\obj\main.o"
 ".\obj\bthq21605v.o"
+".\obj\usart.o"
 ".\obj\helper.o"
 ".\obj\stm32f0xx_it.o"
-".\obj\usart.o"
 ".\obj\hih8120.o"
 ".\obj\buttons.o"
 ".\obj\adc.o"

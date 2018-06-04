@@ -28,6 +28,9 @@
 // ----------------------------------------------------------------------------
 extern uint32_t BTHQ21605V_CommStatus;
 extern volatile char rx_buffer;
+
+volatile double humidityy;
+volatile double temperaturee;
 // ----------------------------------------------------------------------------
 // Function prototypes
 // ----------------------------------------------------------------------------
@@ -40,8 +43,8 @@ int main(void){
 	//char c1=0;
 	//char c2=1; 
 	
-	double humidity;
-	double temperature;
+	volatile double humidity;
+	volatile double temperature;
 	uint8_t buf[4] = {1,2,3,4};
 	char charbuf[10];
 	// Configure LED3 and LED4 on STM32F0-Discovery
@@ -125,6 +128,8 @@ int main(void){
 		USART_putstr(charbuf);
 		USART_putstr("\n");
 		
+		humidityy = humidityy;
+		temperaturee = temperaturee;
 		/* Temperature is located in next two bytes, padded by two trailing bits */
 		temperature = ReadTemperature(buf,4);
 		itoa_simple(charbuf, temperature);

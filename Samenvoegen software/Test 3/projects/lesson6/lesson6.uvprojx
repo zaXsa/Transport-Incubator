@@ -391,6 +391,11 @@
               <FilePath>.\src\bthq21605v.c</FilePath>
             </File>
             <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\usart.c</FilePath>
+            </File>
+            <File>
               <FileName>helper.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\helper.c</FilePath>
@@ -399,11 +404,6 @@
               <FileName>stm32f0xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\stm32f0xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\usart.c</FilePath>
             </File>
             <File>
               <FileName>HIH8120.c</FileName>

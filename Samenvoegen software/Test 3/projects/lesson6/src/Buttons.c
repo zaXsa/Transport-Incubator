@@ -21,6 +21,7 @@
 int CurrentMode = 0;
 extern float HumDesired;
 extern float TempDesired;
+extern float TempBabyAcc;
 
 // ----------------------------------------------------------------------------
 // Local function prototypes
@@ -43,28 +44,28 @@ void InputEnable(){
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
@@ -96,10 +97,16 @@ void SetNextMode(){
 	CurrentMode++;
 	if (CurrentMode>2){
 		CurrentMode = 0;
-	}													
+	}							
+	Delay((SystemCoreClock/8/50));
 	SetDisplay();
 }
 
+/**
+  * @brief  This function checks the currentmode and adds to the Desired amount 
+  * @param  No parameters
+  * @retval Updated Desired amount
+  */
 void DesiredUp(){
 	switch(CurrentMode){
 		case 0:
@@ -119,8 +126,14 @@ void DesiredUp(){
 		default:
 			break;
 	}
+	Delay((SystemCoreClock/8/50));
 }
 
+/**
+  * @brief  This function checks the currentmode and retracts from the Desired amount 
+  * @param  No parameters
+  * @retval Updated Desired amount
+  */
 void DesiredDown(){
 	switch(CurrentMode){
 		case 0:
@@ -140,4 +153,5 @@ void DesiredDown(){
 		default:
 			break;
 	}
+	Delay((SystemCoreClock/8/50));
 }

@@ -18,7 +18,9 @@
 // ----------------------------------------------------------------------------
 // Global variables
 // ----------------------------------------------------------------------------
-
+extern float TempInfra;
+extern float HumAcc;
+extern float TempAcc;
 // ----------------------------------------------------------------------------
 // Local function prototypes
 // ----------------------------------------------------------------------------
@@ -39,6 +41,7 @@ void MesureHIH8120(uint8_t buf[], int size){
 	I2C_ClearFlag(I2C1, I2C_ICR_STOPCF);
 
 	Delay(SystemCoreClock/8/10);
+	BTHQ21605V_WaitForI2CFlag(I2C_ISR_BUSY);
 	// Start I2C write transfer for 4 byte, do end transfer (I2C_AutoEnd_Mode)
 	// Reads the read the measured data from the HIH8120 
 	I2C_TransferHandling(I2C1, (0x27<<1), 4, I2C_AutoEnd_Mode, I2C_Generate_Start_Read);
@@ -72,7 +75,8 @@ double ReadHumidity(const uint8_t buf[], const int size){
 	
 	// Uses the first 2 bytes from the HIH8120 and calculates the humidity
 	reading_hum = (buf[0]<<8) + buf[1];
-	return reading_hum / 16382.0 * 100.0;
+	HumAcc = (reading_hum / 16382.0) * 100.0;
+	return HumAcc;
 }
 
 /**
@@ -85,5 +89,6 @@ double ReadTemperature(const uint8_t buf[], const int size){
 	
 	// Uses the last 2 bytes from the HIH8120 and calculates the Temperature
 	reading_temp = (buf[2]<<6) + (buf[3]>>2);
-	return reading_temp / 16382.0 * 165.0 - 40;
+	TempAcc = ((reading_temp / 16382.0) * 165.0) - 40;
+	return TempAcc;
 }

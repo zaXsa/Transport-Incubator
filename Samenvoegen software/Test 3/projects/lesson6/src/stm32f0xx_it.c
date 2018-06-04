@@ -135,6 +135,7 @@ void EXTI4_15_IRQHandler(void){
 		EXTI_ClearFlag(EXTI_Line6);
 	}
 	if(EXTI_GetITStatus(EXTI_Line7)){
+		STM_EVAL_LEDToggle(LED4);	
 		SetNextMode();
 		EXTI_ClearFlag(EXTI_Line7);
 	}
