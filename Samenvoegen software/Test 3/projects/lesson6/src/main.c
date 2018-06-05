@@ -1,7 +1,7 @@
 /******************************************************************************
  * Project        : HAN ESE PRJ2, Transport Incubator
  * File           : Main program - Master Main
- * Copyright      : 12018 HAN Embedded Systems Engineering ELT-ESE-1n
+ * Copyright      : 12018 HAN Embedded Systems Engineering ZT5-1
  ******************************************************************************
   Change History:
 
@@ -93,11 +93,11 @@ int main(void){
 		// Delays for 1 seconds
 		Delay((SystemCoreClock/8));
 		
-		MesureHIH8120(buf,4);																		// Function to make a new measurement from the HIH8120
-		humidity = ReadHumidity(buf,4);															// Function to get the latest measured humidity
-		setHunmidity(humidity);																		// Sets the PWM for the humidity regulator
-		temperature = ReadTemperature(buf,4);													// Function to get the latest measured temperature	
-		setTemperature(temperature);																// Sets the PWM for the temperature regulator
+		MesureHIH8120(buf,4);																	// Function to make a new measurement from the HIH8120
+		humidity = ReadHumidity(buf,4);												// Function to get the latest measured humidity
+		setHunmidity(humidity);																// Sets the PWM for the humidity regulator
+		temperature = ReadTemperature(buf,4);									// Function to get the latest measured temperature	
+		setTemperature(temperature);													// Sets the PWM for the temperature regulator
 		MeasureADC();																					// Function to make a new measurement from the ZTP135-sr	
 		SetDisplay();
 	}

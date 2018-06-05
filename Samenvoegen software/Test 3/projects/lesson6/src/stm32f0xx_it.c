@@ -107,20 +107,32 @@ void SysTick_Handler(void)
 /*  available peripheral interrupt handler's name please refer to the startup */
 /*  file (startup_stm32f0xx.s).                                               */
 /******************************************************************************/
-
+/**
+  * @brief  This function handles USART interrupts.
+  * @param  None
+  * @retval None
+  */
 void USART1_IRQHandler(void){ 
    if(USART1->ISR & USART_ISR_RXNE){											   				// Read Data Register not empty interrupt?
      rx_buffer = USART1->RDR;																				// Read the data, clears the interrupt flag	
    }	
 }	
-	
+/**
+  * @brief  This function handles buttons on line 0 and 1.
+  * @param  None
+  * @retval None
+  */	
 void EXTI0_1_IRQHandler(void){	
 	//if(EXTI_GetITStatus(EXTI_Line0)){																	// Easier way
 	//	STM_EVAL_LEDToggle(LED4);	
 	//	EXTI_ClearFlag(EXTI_Line0);
 	//}
 }
-
+/**
+  * @brief  This function handles buttons on line 4 to 15
+  * @param  None
+  * @retval None
+  */
 void EXTI4_15_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line4)){																	
 		DesiredUp();	

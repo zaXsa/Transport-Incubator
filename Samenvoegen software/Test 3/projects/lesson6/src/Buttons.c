@@ -99,9 +99,9 @@ void SetNextMode(){
 	CurrentMode++;
 	if (CurrentMode>2){
 		CurrentMode = 0;
-	}							
+	}
+	SetDisplay();	
 	Delay((SystemCoreClock/8/50));
-	SetDisplay();
 }
 
 /**
@@ -128,6 +128,7 @@ void DesiredUp(){
 		default:
 			break;
 	}
+	SetDisplay();
 	Delay((SystemCoreClock/8/50));
 }
 
@@ -155,5 +156,6 @@ void DesiredDown(){
 		default:
 			break;
 	}
+	SetDisplay();
 	Delay((SystemCoreClock/8/50));
 }

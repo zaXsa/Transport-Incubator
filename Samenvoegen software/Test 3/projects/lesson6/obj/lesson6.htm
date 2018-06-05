@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\lesson6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\lesson6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Jun 04 23:23:07 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jun 05 09:16:22 2018
 <BR><P>
 <H3>Maximum Stack Usage =        296 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -266,6 +266,8 @@ Global Symbols
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BTHQ21605V_Clear
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetNextMode
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DesiredUp
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DesiredDown
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -413,20 +415,22 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI4_15_IRQHandler
 </UL>
 
-<P><STRONG><a name="[5f]"></a>DesiredUp</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, buttons.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = DesiredUp &rArr; __aeabi_fadd &rArr; _float_epilogue
+<P><STRONG><a name="[5f]"></a>DesiredUp</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, buttons.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = DesiredUp &rArr; SetDisplay &rArr; BTHQ21605V_Clear &rArr; BTHQ21605V_WriteInstruction &rArr; BTHQ21605V_ReadStatus &rArr; BTHQ21605V_WaitForI2CFlag
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetDisplay
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI4_15_IRQHandler
 </UL>
 
-<P><STRONG><a name="[61]"></a>DesiredDown</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, buttons.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = DesiredDown &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
+<P><STRONG><a name="[61]"></a>DesiredDown</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, buttons.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = DesiredDown &rArr; SetDisplay &rArr; BTHQ21605V_Clear &rArr; BTHQ21605V_WriteInstruction &rArr; BTHQ21605V_ReadStatus &rArr; BTHQ21605V_WaitForI2CFlag
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetDisplay
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
@@ -522,7 +526,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[39]"></a>setHunmidity</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, pwm.o(.text))
+<P><STRONG><a name="[39]"></a>setHunmidity</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, pwm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = setHunmidity &rArr; __aeabi_frsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
