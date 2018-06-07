@@ -171,7 +171,7 @@ void setTemperature(float Temp){
 	}else{
 		NewTemp = BufPWM;
 	}	
-	TIM_SetCompare2(TIM2,NewTemp);
+	TIM_SetCompare3(TIM2,NewTemp);
 }
 
 /**
