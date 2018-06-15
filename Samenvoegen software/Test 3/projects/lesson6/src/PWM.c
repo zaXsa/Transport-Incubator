@@ -163,7 +163,7 @@ void setServo(const uint32_t newServoPos){
 void setTemperature(float Temp){
 	uint32_t NewTemp;
 	long BufPWM;
-	BufPWM = 9600*(2*pow(TempDesired-Temp,3) + 20 );
+	BufPWM = 9600*(2*pow(Temp-TempDesired,3) + 20 );
 	if(BufPWM > 950000){
 		NewTemp = 950000;
 	}else if(BufPWM < 0){
@@ -183,7 +183,7 @@ void setHunmidity(float Hum){
 	if(HumDesired-Hum < 5){
 		if (ServoPos != 30000)
 		setServo(30000);
-	}else if(HumDesired-Hum < 20){
+	}else if(HumDesired-Hum < 10){
 		if (ServoPos != 52000)
 		setServo(52000);
 	}else

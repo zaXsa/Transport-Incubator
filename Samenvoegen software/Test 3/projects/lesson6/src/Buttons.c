@@ -148,7 +148,7 @@ void DesiredDown(){
 		case 1:
 			HumDesired--;
 			if(HumDesired < 40){
-				HumDesired = 80;
+				HumDesired = 40;
 			}
 			break;
 		case 2:

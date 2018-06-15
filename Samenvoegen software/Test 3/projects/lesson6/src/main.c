@@ -43,7 +43,7 @@ extern uint32_t ServoPos;
 // ----------------------------------------------------------------------------
 int main(void){
 	float humidity, temperature;
-	uint8_t buf[4];
+	uint8_t bufA[4];
 	
 	// Configure LED3 and LED4 on STM32F0-Discovery
 	STM_EVAL_LEDInit(LED3);
@@ -84,21 +84,27 @@ int main(void){
 	
 	// Delays for 2 seconds
 	Delay((SystemCoreClock/8)*2);
-	// In case of error, set LED3 on
-	if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
-		STM_EVAL_LEDOn(LED3);
-	}
-	
 	while(1){
 		// Delays for 1 seconds
 		Delay((SystemCoreClock/8));
 		
-		MesureHIH8120(buf,4);																	// Function to make a new measurement from the HIH8120
-		humidity = ReadHumidity(buf,4);												// Function to get the latest measured humidity
+		MesureHIH8120(bufA,4);																	// Function to make a new measurement from the HIH8120
+		humidity = ReadHumidity(bufA,4);												// Function to get the latest measured humidity
 		setHunmidity(humidity);																// Sets the PWM for the humidity regulator
-		temperature = ReadTemperature(buf,4);									// Function to get the latest measured temperature	
+		temperature = ReadTemperature(bufA,4);									// Function to get the latest measured temperature	
 		setTemperature(temperature);													// Sets the PWM for the temperature regulator
 		MeasureADC();																					// Function to make a new measurement from the ZTP135-sr	
 		SetDisplay();
+		
+		// In case of error, set LED3 on
+		if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
+			STM_EVAL_LEDOn(LED3);
+			BTHQ21605V_Setup();
+			BTHQ21605V_PowerOn();
+			SetDisplay();
+			BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
+		}else{
+			STM_EVAL_LEDOff(LED3);
+		}
 	}
 }
