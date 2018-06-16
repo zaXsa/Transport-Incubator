@@ -131,5 +131,6 @@ void BTHQ21605V_WaitForI2CFlag(uint32_t flag);
 
 // Made by ZT5-1
 void SetDisplay(void);
+void CheckError(void);
 
 #endif /* _BTHQ21605V_H_ */

@@ -10,6 +10,7 @@
 
 ******************************************************************************/
 #include "stm32f0xx_conf.h"
+#include "stm32f0_discovery.h"
 #include "bthq21605v.h"
 #include "helper.h"
 #include "usart.h"
@@ -589,5 +590,18 @@ void SetDisplay(){
 			BTHQ21605V_GotoXY(0,0);
 			BTHQ21605V_Puts((uint8_t *)("Mode Error: "));
 			break;
+	}
+}
+
+void CheckError(){
+		// In case of error, set LED3 on
+	if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
+		STM_EVAL_LEDOn(LED3);
+		BTHQ21605V_Setup();
+		BTHQ21605V_PowerOn();
+		SetDisplay();
+		BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
+	}else{
+		STM_EVAL_LEDOff(LED3);
 	}
 }

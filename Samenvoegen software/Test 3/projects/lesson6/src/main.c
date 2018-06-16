@@ -5,6 +5,7 @@
  ******************************************************************************
   Change History:
 
+	version 1.4	- June 12018	> Add Display error reset
    Version 1.3 - June 12018	> Fix Bugs  
 	Version 1.2 - June 12018	> Rewrite main  	
 	Version 1.1 - May 12018		> Add Libraries
@@ -88,23 +89,14 @@ int main(void){
 		// Delays for 1 seconds
 		Delay((SystemCoreClock/8));
 		
-		MesureHIH8120(bufA,4);																	// Function to make a new measurement from the HIH8120
-		humidity = ReadHumidity(bufA,4);												// Function to get the latest measured humidity
-		setHunmidity(humidity);																// Sets the PWM for the humidity regulator
-		temperature = ReadTemperature(bufA,4);									// Function to get the latest measured temperature	
-		setTemperature(temperature);													// Sets the PWM for the temperature regulator
+		MesureHIH8120(bufA,4);																		// Function to make a new measurement from the HIH8120
+		humidity = ReadHumidity(bufA,4);															// Function to get the latest measured humidity
+		setHunmidity(humidity);																		// Sets the PWM for the humidity regulator
+		temperature = ReadTemperature(bufA,4);													// Function to get the latest measured temperature	
+		setTemperature(temperature);																// Sets the PWM for the temperature regulator
 		MeasureADC();																					// Function to make a new measurement from the ZTP135-sr	
 		SetDisplay();
 		
-		// In case of error, set LED3 on
-		if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
-			STM_EVAL_LEDOn(LED3);
-			BTHQ21605V_Setup();
-			BTHQ21605V_PowerOn();
-			SetDisplay();
-			BTHQ21605V_CommStatus = BTHQ21605V_COMM_OK;
-		}else{
-			STM_EVAL_LEDOff(LED3);
-		}
+		CheckError();
 	}
 }
