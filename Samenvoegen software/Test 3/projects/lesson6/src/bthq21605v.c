@@ -593,6 +593,11 @@ void SetDisplay(){
 	}
 }
 
+/**
+  * @brief  This function checks if a error has accured and resets based on the error
+  * @param  No parameters
+  * @retval none
+  */
 void CheckError(){
 		// In case of error, set LED3 on
 	if(BTHQ21605V_CommStatus != BTHQ21605V_COMM_OK){
